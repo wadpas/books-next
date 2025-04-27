@@ -1225,21 +1225,21 @@ export namespace Prisma {
   }
 
   export type ProductAvgAggregateOutputType = {
-    priceInCents: number | null
+    price: number | null
   }
 
   export type ProductSumAggregateOutputType = {
-    priceInCents: number | null
+    price: number | null
   }
 
   export type ProductMinAggregateOutputType = {
     id: string | null
     name: string | null
-    priceInCents: number | null
+    description: string | null
+    price: number | null
     filePath: string | null
     imagePath: string | null
-    description: string | null
-    isAvailableForPurchase: boolean | null
+    isAvailable: boolean | null
     createdAt: Date | null
     updateAt: Date | null
   }
@@ -1247,11 +1247,11 @@ export namespace Prisma {
   export type ProductMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    priceInCents: number | null
+    description: string | null
+    price: number | null
     filePath: string | null
     imagePath: string | null
-    description: string | null
-    isAvailableForPurchase: boolean | null
+    isAvailable: boolean | null
     createdAt: Date | null
     updateAt: Date | null
   }
@@ -1259,11 +1259,11 @@ export namespace Prisma {
   export type ProductCountAggregateOutputType = {
     id: number
     name: number
-    priceInCents: number
+    description: number
+    price: number
     filePath: number
     imagePath: number
-    description: number
-    isAvailableForPurchase: number
+    isAvailable: number
     createdAt: number
     updateAt: number
     _all: number
@@ -1271,21 +1271,21 @@ export namespace Prisma {
 
 
   export type ProductAvgAggregateInputType = {
-    priceInCents?: true
+    price?: true
   }
 
   export type ProductSumAggregateInputType = {
-    priceInCents?: true
+    price?: true
   }
 
   export type ProductMinAggregateInputType = {
     id?: true
     name?: true
-    priceInCents?: true
+    description?: true
+    price?: true
     filePath?: true
     imagePath?: true
-    description?: true
-    isAvailableForPurchase?: true
+    isAvailable?: true
     createdAt?: true
     updateAt?: true
   }
@@ -1293,11 +1293,11 @@ export namespace Prisma {
   export type ProductMaxAggregateInputType = {
     id?: true
     name?: true
-    priceInCents?: true
+    description?: true
+    price?: true
     filePath?: true
     imagePath?: true
-    description?: true
-    isAvailableForPurchase?: true
+    isAvailable?: true
     createdAt?: true
     updateAt?: true
   }
@@ -1305,11 +1305,11 @@ export namespace Prisma {
   export type ProductCountAggregateInputType = {
     id?: true
     name?: true
-    priceInCents?: true
+    description?: true
+    price?: true
     filePath?: true
     imagePath?: true
-    description?: true
-    isAvailableForPurchase?: true
+    isAvailable?: true
     createdAt?: true
     updateAt?: true
     _all?: true
@@ -1404,11 +1404,11 @@ export namespace Prisma {
   export type ProductGroupByOutputType = {
     id: string
     name: string
-    priceInCents: number
+    description: string
+    price: number
     filePath: string
     imagePath: string
-    description: string
-    isAvailableForPurchase: boolean
+    isAvailable: boolean
     createdAt: Date
     updateAt: Date
     _count: ProductCountAggregateOutputType | null
@@ -1435,11 +1435,11 @@ export namespace Prisma {
   export type ProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    priceInCents?: boolean
+    description?: boolean
+    price?: boolean
     filePath?: boolean
     imagePath?: boolean
-    description?: boolean
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: boolean
     updateAt?: boolean
     order?: boolean | Product$orderArgs<ExtArgs>
@@ -1450,11 +1450,11 @@ export namespace Prisma {
   export type ProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    priceInCents?: boolean
+    description?: boolean
+    price?: boolean
     filePath?: boolean
     imagePath?: boolean
-    description?: boolean
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: boolean
     updateAt?: boolean
   }, ExtArgs["result"]["product"]>
@@ -1462,11 +1462,11 @@ export namespace Prisma {
   export type ProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    priceInCents?: boolean
+    description?: boolean
+    price?: boolean
     filePath?: boolean
     imagePath?: boolean
-    description?: boolean
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: boolean
     updateAt?: boolean
   }, ExtArgs["result"]["product"]>
@@ -1474,16 +1474,16 @@ export namespace Prisma {
   export type ProductSelectScalar = {
     id?: boolean
     name?: boolean
-    priceInCents?: boolean
+    description?: boolean
+    price?: boolean
     filePath?: boolean
     imagePath?: boolean
-    description?: boolean
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: boolean
     updateAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "priceInCents" | "filePath" | "imagePath" | "description" | "isAvailableForPurchase" | "createdAt" | "updateAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "filePath" | "imagePath" | "isAvailable" | "createdAt" | "updateAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     order?: boolean | Product$orderArgs<ExtArgs>
     downloadVerification?: boolean | Product$downloadVerificationArgs<ExtArgs>
@@ -1501,11 +1501,11 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      priceInCents: number
+      description: string
+      price: number
       filePath: string
       imagePath: string
-      description: string
-      isAvailableForPurchase: boolean
+      isAvailable: boolean
       createdAt: Date
       updateAt: Date
     }, ExtArgs["result"]["product"]>
@@ -1935,11 +1935,11 @@ export namespace Prisma {
   interface ProductFieldRefs {
     readonly id: FieldRef<"Product", 'String'>
     readonly name: FieldRef<"Product", 'String'>
-    readonly priceInCents: FieldRef<"Product", 'Int'>
+    readonly description: FieldRef<"Product", 'String'>
+    readonly price: FieldRef<"Product", 'Int'>
     readonly filePath: FieldRef<"Product", 'String'>
     readonly imagePath: FieldRef<"Product", 'String'>
-    readonly description: FieldRef<"Product", 'String'>
-    readonly isAvailableForPurchase: FieldRef<"Product", 'Boolean'>
+    readonly isAvailable: FieldRef<"Product", 'Boolean'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updateAt: FieldRef<"Product", 'DateTime'>
   }
@@ -3466,16 +3466,16 @@ export namespace Prisma {
   }
 
   export type OrderAvgAggregateOutputType = {
-    pricePaidInCents: number | null
+    total: number | null
   }
 
   export type OrderSumAggregateOutputType = {
-    pricePaidInCents: number | null
+    total: number | null
   }
 
   export type OrderMinAggregateOutputType = {
     id: string | null
-    pricePaidInCents: number | null
+    total: number | null
     userId: string | null
     productId: string | null
     createdAt: Date | null
@@ -3484,7 +3484,7 @@ export namespace Prisma {
 
   export type OrderMaxAggregateOutputType = {
     id: string | null
-    pricePaidInCents: number | null
+    total: number | null
     userId: string | null
     productId: string | null
     createdAt: Date | null
@@ -3493,7 +3493,7 @@ export namespace Prisma {
 
   export type OrderCountAggregateOutputType = {
     id: number
-    pricePaidInCents: number
+    total: number
     userId: number
     productId: number
     createdAt: number
@@ -3503,16 +3503,16 @@ export namespace Prisma {
 
 
   export type OrderAvgAggregateInputType = {
-    pricePaidInCents?: true
+    total?: true
   }
 
   export type OrderSumAggregateInputType = {
-    pricePaidInCents?: true
+    total?: true
   }
 
   export type OrderMinAggregateInputType = {
     id?: true
-    pricePaidInCents?: true
+    total?: true
     userId?: true
     productId?: true
     createdAt?: true
@@ -3521,7 +3521,7 @@ export namespace Prisma {
 
   export type OrderMaxAggregateInputType = {
     id?: true
-    pricePaidInCents?: true
+    total?: true
     userId?: true
     productId?: true
     createdAt?: true
@@ -3530,7 +3530,7 @@ export namespace Prisma {
 
   export type OrderCountAggregateInputType = {
     id?: true
-    pricePaidInCents?: true
+    total?: true
     userId?: true
     productId?: true
     createdAt?: true
@@ -3626,7 +3626,7 @@ export namespace Prisma {
 
   export type OrderGroupByOutputType = {
     id: string
-    pricePaidInCents: number
+    total: number
     userId: string
     productId: string
     createdAt: Date
@@ -3654,7 +3654,7 @@ export namespace Prisma {
 
   export type OrderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    pricePaidInCents?: boolean
+    total?: boolean
     userId?: boolean
     productId?: boolean
     createdAt?: boolean
@@ -3665,7 +3665,7 @@ export namespace Prisma {
 
   export type OrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    pricePaidInCents?: boolean
+    total?: boolean
     userId?: boolean
     productId?: boolean
     createdAt?: boolean
@@ -3676,7 +3676,7 @@ export namespace Prisma {
 
   export type OrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    pricePaidInCents?: boolean
+    total?: boolean
     userId?: boolean
     productId?: boolean
     createdAt?: boolean
@@ -3687,14 +3687,14 @@ export namespace Prisma {
 
   export type OrderSelectScalar = {
     id?: boolean
-    pricePaidInCents?: boolean
+    total?: boolean
     userId?: boolean
     productId?: boolean
     createdAt?: boolean
     updateAt?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pricePaidInCents" | "userId" | "productId" | "createdAt" | "updateAt", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "total" | "userId" | "productId" | "createdAt" | "updateAt", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
@@ -3716,7 +3716,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      pricePaidInCents: number
+      total: number
       userId: string
       productId: string
       createdAt: Date
@@ -4147,7 +4147,7 @@ export namespace Prisma {
    */
   interface OrderFieldRefs {
     readonly id: FieldRef<"Order", 'String'>
-    readonly pricePaidInCents: FieldRef<"Order", 'Int'>
+    readonly total: FieldRef<"Order", 'Int'>
     readonly userId: FieldRef<"Order", 'String'>
     readonly productId: FieldRef<"Order", 'String'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
@@ -5628,11 +5628,11 @@ export namespace Prisma {
   export const ProductScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    priceInCents: 'priceInCents',
+    description: 'description',
+    price: 'price',
     filePath: 'filePath',
     imagePath: 'imagePath',
-    description: 'description',
-    isAvailableForPurchase: 'isAvailableForPurchase',
+    isAvailable: 'isAvailable',
     createdAt: 'createdAt',
     updateAt: 'updateAt'
   };
@@ -5652,7 +5652,7 @@ export namespace Prisma {
 
   export const OrderScalarFieldEnum: {
     id: 'id',
-    pricePaidInCents: 'pricePaidInCents',
+    total: 'total',
     userId: 'userId',
     productId: 'productId',
     createdAt: 'createdAt',
@@ -5765,11 +5765,11 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     id?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
-    priceInCents?: IntFilter<"Product"> | number
+    description?: StringFilter<"Product"> | string
+    price?: IntFilter<"Product"> | number
     filePath?: StringFilter<"Product"> | string
     imagePath?: StringFilter<"Product"> | string
-    description?: StringFilter<"Product"> | string
-    isAvailableForPurchase?: BoolFilter<"Product"> | boolean
+    isAvailable?: BoolFilter<"Product"> | boolean
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updateAt?: DateTimeFilter<"Product"> | Date | string
     order?: OrderListRelationFilter
@@ -5779,11 +5779,11 @@ export namespace Prisma {
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    priceInCents?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
     filePath?: SortOrder
     imagePath?: SortOrder
-    description?: SortOrder
-    isAvailableForPurchase?: SortOrder
+    isAvailable?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
     order?: OrderOrderByRelationAggregateInput
@@ -5796,11 +5796,11 @@ export namespace Prisma {
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     name?: StringFilter<"Product"> | string
-    priceInCents?: IntFilter<"Product"> | number
+    description?: StringFilter<"Product"> | string
+    price?: IntFilter<"Product"> | number
     filePath?: StringFilter<"Product"> | string
     imagePath?: StringFilter<"Product"> | string
-    description?: StringFilter<"Product"> | string
-    isAvailableForPurchase?: BoolFilter<"Product"> | boolean
+    isAvailable?: BoolFilter<"Product"> | boolean
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updateAt?: DateTimeFilter<"Product"> | Date | string
     order?: OrderListRelationFilter
@@ -5810,11 +5810,11 @@ export namespace Prisma {
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    priceInCents?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
     filePath?: SortOrder
     imagePath?: SortOrder
-    description?: SortOrder
-    isAvailableForPurchase?: SortOrder
+    isAvailable?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
     _count?: ProductCountOrderByAggregateInput
@@ -5830,11 +5830,11 @@ export namespace Prisma {
     NOT?: ProductScalarWhereWithAggregatesInput | ProductScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Product"> | string
     name?: StringWithAggregatesFilter<"Product"> | string
-    priceInCents?: IntWithAggregatesFilter<"Product"> | number
+    description?: StringWithAggregatesFilter<"Product"> | string
+    price?: IntWithAggregatesFilter<"Product"> | number
     filePath?: StringWithAggregatesFilter<"Product"> | string
     imagePath?: StringWithAggregatesFilter<"Product"> | string
-    description?: StringWithAggregatesFilter<"Product"> | string
-    isAvailableForPurchase?: BoolWithAggregatesFilter<"Product"> | boolean
+    isAvailable?: BoolWithAggregatesFilter<"Product"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updateAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
   }
@@ -5894,7 +5894,7 @@ export namespace Prisma {
     OR?: OrderWhereInput[]
     NOT?: OrderWhereInput | OrderWhereInput[]
     id?: StringFilter<"Order"> | string
-    pricePaidInCents?: IntFilter<"Order"> | number
+    total?: IntFilter<"Order"> | number
     userId?: StringFilter<"Order"> | string
     productId?: StringFilter<"Order"> | string
     createdAt?: DateTimeFilter<"Order"> | Date | string
@@ -5905,7 +5905,7 @@ export namespace Prisma {
 
   export type OrderOrderByWithRelationInput = {
     id?: SortOrder
-    pricePaidInCents?: SortOrder
+    total?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     createdAt?: SortOrder
@@ -5919,7 +5919,7 @@ export namespace Prisma {
     AND?: OrderWhereInput | OrderWhereInput[]
     OR?: OrderWhereInput[]
     NOT?: OrderWhereInput | OrderWhereInput[]
-    pricePaidInCents?: IntFilter<"Order"> | number
+    total?: IntFilter<"Order"> | number
     userId?: StringFilter<"Order"> | string
     productId?: StringFilter<"Order"> | string
     createdAt?: DateTimeFilter<"Order"> | Date | string
@@ -5930,7 +5930,7 @@ export namespace Prisma {
 
   export type OrderOrderByWithAggregationInput = {
     id?: SortOrder
-    pricePaidInCents?: SortOrder
+    total?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     createdAt?: SortOrder
@@ -5947,7 +5947,7 @@ export namespace Prisma {
     OR?: OrderScalarWhereWithAggregatesInput[]
     NOT?: OrderScalarWhereWithAggregatesInput | OrderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Order"> | string
-    pricePaidInCents?: IntWithAggregatesFilter<"Order"> | number
+    total?: IntWithAggregatesFilter<"Order"> | number
     userId?: StringWithAggregatesFilter<"Order"> | string
     productId?: StringWithAggregatesFilter<"Order"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
@@ -6007,11 +6007,11 @@ export namespace Prisma {
   export type ProductCreateInput = {
     id?: string
     name: string
-    priceInCents: number
+    description: string
+    price: number
     filePath: string
     imagePath: string
-    description: string
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: Date | string
     updateAt?: Date | string
     order?: OrderCreateNestedManyWithoutProductInput
@@ -6021,11 +6021,11 @@ export namespace Prisma {
   export type ProductUncheckedCreateInput = {
     id?: string
     name: string
-    priceInCents: number
+    description: string
+    price: number
     filePath: string
     imagePath: string
-    description: string
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: Date | string
     updateAt?: Date | string
     order?: OrderUncheckedCreateNestedManyWithoutProductInput
@@ -6035,11 +6035,11 @@ export namespace Prisma {
   export type ProductUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    priceInCents?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     filePath?: StringFieldUpdateOperationsInput | string
     imagePath?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isAvailableForPurchase?: BoolFieldUpdateOperationsInput | boolean
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     order?: OrderUpdateManyWithoutProductNestedInput
@@ -6049,11 +6049,11 @@ export namespace Prisma {
   export type ProductUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    priceInCents?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     filePath?: StringFieldUpdateOperationsInput | string
     imagePath?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isAvailableForPurchase?: BoolFieldUpdateOperationsInput | boolean
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     order?: OrderUncheckedUpdateManyWithoutProductNestedInput
@@ -6063,11 +6063,11 @@ export namespace Prisma {
   export type ProductCreateManyInput = {
     id?: string
     name: string
-    priceInCents: number
+    description: string
+    price: number
     filePath: string
     imagePath: string
-    description: string
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: Date | string
     updateAt?: Date | string
   }
@@ -6075,11 +6075,11 @@ export namespace Prisma {
   export type ProductUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    priceInCents?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     filePath?: StringFieldUpdateOperationsInput | string
     imagePath?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isAvailableForPurchase?: BoolFieldUpdateOperationsInput | boolean
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6087,11 +6087,11 @@ export namespace Prisma {
   export type ProductUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    priceInCents?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     filePath?: StringFieldUpdateOperationsInput | string
     imagePath?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isAvailableForPurchase?: BoolFieldUpdateOperationsInput | boolean
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6151,7 +6151,7 @@ export namespace Prisma {
 
   export type OrderCreateInput = {
     id?: string
-    pricePaidInCents: number
+    total: number
     createdAt?: Date | string
     updateAt?: Date | string
     user: UserCreateNestedOneWithoutOrderInput
@@ -6160,7 +6160,7 @@ export namespace Prisma {
 
   export type OrderUncheckedCreateInput = {
     id?: string
-    pricePaidInCents: number
+    total: number
     userId: string
     productId: string
     createdAt?: Date | string
@@ -6169,7 +6169,7 @@ export namespace Prisma {
 
   export type OrderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutOrderNestedInput
@@ -6178,7 +6178,7 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     productId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6187,7 +6187,7 @@ export namespace Prisma {
 
   export type OrderCreateManyInput = {
     id?: string
-    pricePaidInCents: number
+    total: number
     userId: string
     productId: string
     createdAt?: Date | string
@@ -6196,14 +6196,14 @@ export namespace Prisma {
 
   export type OrderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     productId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6323,27 +6323,27 @@ export namespace Prisma {
   export type ProductCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    priceInCents?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
     filePath?: SortOrder
     imagePath?: SortOrder
-    description?: SortOrder
-    isAvailableForPurchase?: SortOrder
+    isAvailable?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
-    priceInCents?: SortOrder
+    price?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    priceInCents?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
     filePath?: SortOrder
     imagePath?: SortOrder
-    description?: SortOrder
-    isAvailableForPurchase?: SortOrder
+    isAvailable?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
   }
@@ -6351,17 +6351,17 @@ export namespace Prisma {
   export type ProductMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    priceInCents?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
     filePath?: SortOrder
     imagePath?: SortOrder
-    description?: SortOrder
-    isAvailableForPurchase?: SortOrder
+    isAvailable?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
-    priceInCents?: SortOrder
+    price?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -6453,7 +6453,7 @@ export namespace Prisma {
 
   export type OrderCountOrderByAggregateInput = {
     id?: SortOrder
-    pricePaidInCents?: SortOrder
+    total?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     createdAt?: SortOrder
@@ -6461,12 +6461,12 @@ export namespace Prisma {
   }
 
   export type OrderAvgOrderByAggregateInput = {
-    pricePaidInCents?: SortOrder
+    total?: SortOrder
   }
 
   export type OrderMaxOrderByAggregateInput = {
     id?: SortOrder
-    pricePaidInCents?: SortOrder
+    total?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     createdAt?: SortOrder
@@ -6475,7 +6475,7 @@ export namespace Prisma {
 
   export type OrderMinOrderByAggregateInput = {
     id?: SortOrder
-    pricePaidInCents?: SortOrder
+    total?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     createdAt?: SortOrder
@@ -6483,7 +6483,7 @@ export namespace Prisma {
   }
 
   export type OrderSumOrderByAggregateInput = {
-    pricePaidInCents?: SortOrder
+    total?: SortOrder
   }
 
   export type DownloadVerificationCountOrderByAggregateInput = {
@@ -6804,7 +6804,7 @@ export namespace Prisma {
 
   export type OrderCreateWithoutProductInput = {
     id?: string
-    pricePaidInCents: number
+    total: number
     createdAt?: Date | string
     updateAt?: Date | string
     user: UserCreateNestedOneWithoutOrderInput
@@ -6812,7 +6812,7 @@ export namespace Prisma {
 
   export type OrderUncheckedCreateWithoutProductInput = {
     id?: string
-    pricePaidInCents: number
+    total: number
     userId: string
     createdAt?: Date | string
     updateAt?: Date | string
@@ -6871,7 +6871,7 @@ export namespace Prisma {
     OR?: OrderScalarWhereInput[]
     NOT?: OrderScalarWhereInput | OrderScalarWhereInput[]
     id?: StringFilter<"Order"> | string
-    pricePaidInCents?: IntFilter<"Order"> | number
+    total?: IntFilter<"Order"> | number
     userId?: StringFilter<"Order"> | string
     productId?: StringFilter<"Order"> | string
     createdAt?: DateTimeFilter<"Order"> | Date | string
@@ -6906,7 +6906,7 @@ export namespace Prisma {
 
   export type OrderCreateWithoutUserInput = {
     id?: string
-    pricePaidInCents: number
+    total: number
     createdAt?: Date | string
     updateAt?: Date | string
     product: ProductCreateNestedOneWithoutOrderInput
@@ -6914,7 +6914,7 @@ export namespace Prisma {
 
   export type OrderUncheckedCreateWithoutUserInput = {
     id?: string
-    pricePaidInCents: number
+    total: number
     productId: string
     createdAt?: Date | string
     updateAt?: Date | string
@@ -6968,11 +6968,11 @@ export namespace Prisma {
   export type ProductCreateWithoutOrderInput = {
     id?: string
     name: string
-    priceInCents: number
+    description: string
+    price: number
     filePath: string
     imagePath: string
-    description: string
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: Date | string
     updateAt?: Date | string
     downloadVerification?: DownloadVerificationCreateNestedManyWithoutProductInput
@@ -6981,11 +6981,11 @@ export namespace Prisma {
   export type ProductUncheckedCreateWithoutOrderInput = {
     id?: string
     name: string
-    priceInCents: number
+    description: string
+    price: number
     filePath: string
     imagePath: string
-    description: string
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: Date | string
     updateAt?: Date | string
     downloadVerification?: DownloadVerificationUncheckedCreateNestedManyWithoutProductInput
@@ -7035,11 +7035,11 @@ export namespace Prisma {
   export type ProductUpdateWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    priceInCents?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     filePath?: StringFieldUpdateOperationsInput | string
     imagePath?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isAvailableForPurchase?: BoolFieldUpdateOperationsInput | boolean
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     downloadVerification?: DownloadVerificationUpdateManyWithoutProductNestedInput
@@ -7048,11 +7048,11 @@ export namespace Prisma {
   export type ProductUncheckedUpdateWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    priceInCents?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     filePath?: StringFieldUpdateOperationsInput | string
     imagePath?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isAvailableForPurchase?: BoolFieldUpdateOperationsInput | boolean
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     downloadVerification?: DownloadVerificationUncheckedUpdateManyWithoutProductNestedInput
@@ -7061,11 +7061,11 @@ export namespace Prisma {
   export type ProductCreateWithoutDownloadVerificationInput = {
     id?: string
     name: string
-    priceInCents: number
+    description: string
+    price: number
     filePath: string
     imagePath: string
-    description: string
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: Date | string
     updateAt?: Date | string
     order?: OrderCreateNestedManyWithoutProductInput
@@ -7074,11 +7074,11 @@ export namespace Prisma {
   export type ProductUncheckedCreateWithoutDownloadVerificationInput = {
     id?: string
     name: string
-    priceInCents: number
+    description: string
+    price: number
     filePath: string
     imagePath: string
-    description: string
-    isAvailableForPurchase?: boolean
+    isAvailable?: boolean
     createdAt?: Date | string
     updateAt?: Date | string
     order?: OrderUncheckedCreateNestedManyWithoutProductInput
@@ -7103,11 +7103,11 @@ export namespace Prisma {
   export type ProductUpdateWithoutDownloadVerificationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    priceInCents?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     filePath?: StringFieldUpdateOperationsInput | string
     imagePath?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isAvailableForPurchase?: BoolFieldUpdateOperationsInput | boolean
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     order?: OrderUpdateManyWithoutProductNestedInput
@@ -7116,11 +7116,11 @@ export namespace Prisma {
   export type ProductUncheckedUpdateWithoutDownloadVerificationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    priceInCents?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     filePath?: StringFieldUpdateOperationsInput | string
     imagePath?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isAvailableForPurchase?: BoolFieldUpdateOperationsInput | boolean
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     order?: OrderUncheckedUpdateManyWithoutProductNestedInput
@@ -7128,7 +7128,7 @@ export namespace Prisma {
 
   export type OrderCreateManyProductInput = {
     id?: string
-    pricePaidInCents: number
+    total: number
     userId: string
     createdAt?: Date | string
     updateAt?: Date | string
@@ -7142,7 +7142,7 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutOrderNestedInput
@@ -7150,7 +7150,7 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7158,7 +7158,7 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateManyWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7184,7 +7184,7 @@ export namespace Prisma {
 
   export type OrderCreateManyUserInput = {
     id?: string
-    pricePaidInCents: number
+    total: number
     productId: string
     createdAt?: Date | string
     updateAt?: Date | string
@@ -7192,7 +7192,7 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     product?: ProductUpdateOneRequiredWithoutOrderNestedInput
@@ -7200,7 +7200,7 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     productId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7208,7 +7208,7 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pricePaidInCents?: IntFieldUpdateOperationsInput | number
+    total?: IntFieldUpdateOperationsInput | number
     productId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string

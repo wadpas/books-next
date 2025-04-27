@@ -28,12 +28,12 @@ export default async function AdminDashboard() {
 
 async function getSalesData() {
   const data = await db.order.aggregate({
-    _sum: { pricePaidInCents: true },
+    _sum: { total: true },
     _count: true,
   })
 
   return {
-    amount: (data._sum.pricePaidInCents || 0) / 100,
+    amount: (data._sum.total || 0) / 100,
     numberOfSales: data._count,
   }
 }
@@ -42,20 +42,20 @@ async function getUserData() {
   const [userCount, orderData] = await Promise.all([
     db.user.count(),
     db.order.aggregate({
-      _sum: { pricePaidInCents: true },
+      _sum: { total: true },
     }),
   ])
 
   return {
     userCount,
-    averageOrderValue: (orderData._sum.pricePaidInCents || 0) / 100 / userCount,
+    averageOrderValue: (orderData._sum.total || 0) / 100 / userCount,
   }
 }
 
 async function getProductData() {
   const [productCount, availableProductCount] = await Promise.all([
     db.product.count(),
-    db.product.count({ where: { isAvailableForPurchase: true } }),
+    db.product.count({ where: { isAvailable: true } }),
   ])
 
   return {
