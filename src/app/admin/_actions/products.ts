@@ -16,21 +16,10 @@ const productSchema = z.object({
 export async function addProduct(prevState: unknown, formData: FormData) {
   const result = productSchema.safeParse(Object.fromEntries(formData.entries()))
   if (result.success === false) {
-    console.log(result.error.format())
-
     return result.error.formErrors.fieldErrors
   }
 
   const data = result.data
-
-  // fs
-  // await fs.mkdir('products', { recursive: true })
-  // const filePath = `products/${crypto.randomUUID()}-${data.file.name}`
-  // await fs.writeFile(filePath, Buffer.from(await data.file.arrayBuffer()))
-
-  // await fs.mkdir('public/products', { recursive: true })
-  // const imagePath = `/products/${crypto.randomUUID()}-${data.image.name}`
-  // await fs.writeFile(`public${imagePath}`, Buffer.from(await data.image.arrayBuffer()))
 
   const { url: filePath } = await put(`products/${data.file.name}`, Buffer.from(await data.file.arrayBuffer()), {
     access: 'public',
@@ -53,6 +42,57 @@ export async function addProduct(prevState: unknown, formData: FormData) {
   redirect('/admin/products')
 }
 
+const editProductSchema = productSchema.extend({
+  file: z
+    .instanceof(File)
+    .refine((file) => file.size === 0)
+    .optional(),
+  image: z
+    .instanceof(File)
+    .refine((file) => file.size === 0)
+    .optional(),
+})
+
+export async function updateProduct(id: string, prevState: unknown, formData: FormData) {
+  const result = editProductSchema.safeParse(Object.fromEntries(formData.entries()))
+  if (result.success === false) {
+    return result.error.formErrors.fieldErrors
+  }
+
+  const data = result.data
+  const product = await db.product.findUnique({ where: { id } })
+
+  if (product == null) return notFound()
+
+  if (data.file != null && data.file.size > 0) {
+    await del(product.filePath)
+    const { url: filePath } = await put(`products/${data.file.name}`, Buffer.from(await data.file.arrayBuffer()), {
+      access: 'public',
+    })
+    product.filePath = filePath
+  }
+  if (data.image != null && data.image.size > 0) {
+    await del(product.imagePath)
+    const { url: imagePath } = await put(`images/${data.image.name}`, Buffer.from(await data.image.arrayBuffer()), {
+      access: 'public',
+    })
+    product.imagePath = imagePath
+  }
+
+  await db.product.update({
+    where: { id },
+    data: {
+      name: data.name,
+      description: data.description,
+      price: data.price,
+      filePath: product.filePath,
+      imagePath: product.imagePath,
+    },
+  })
+
+  redirect('/admin/products')
+}
+
 export async function toggleProductAvailability(id: string, isAvailable: boolean) {
   await db.product.update({
     where: { id },
@@ -63,8 +103,8 @@ export async function toggleProductAvailability(id: string, isAvailable: boolean
 
 export async function deleteProduct(id: string) {
   const product = await db.product.delete({ where: { id } })
-  await del(product.imagePath)
   await del(product.filePath)
+  await del(product.imagePath)
 
   if (product == null) return notFound()
 }

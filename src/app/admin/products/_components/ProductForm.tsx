@@ -4,12 +4,14 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { addProduct } from '../../_actions/products'
+import { addProduct, updateProduct } from '../../_actions/products'
 import { useFormStatus } from 'react-dom'
 import { useActionState } from 'react'
+import { Product } from '@/generated/prisma'
+import Image from 'next/image'
 
-export function ProductForm() {
-  const [error, action] = useActionState(addProduct, {})
+export function ProductForm({ product }: { product?: Product | null }) {
+  const [error, action] = useActionState(product == null ? addProduct : updateProduct.bind(null, product.id), {})
 
   return (
     <form
@@ -21,16 +23,18 @@ export function ProductForm() {
           type='text'
           id='name'
           name='name'
+          defaultValue={product?.name || ''}
           required
         />
         {error.name && <div className='text-destructive text-sm'>{error.name}</div>}
       </div>
       <div className='space-y-2'>
-        <Label htmlFor='price'>Price In Cents</Label>
+        <Label htmlFor='price'>Price</Label>
         <Input
           type='number'
           id='price'
           name='price'
+          defaultValue={product?.price || ''}
           required
         />
         {error.price && <div className='text-destructive text-sm'>{error.price}</div>}
@@ -40,6 +44,7 @@ export function ProductForm() {
         <Textarea
           id='description'
           name='description'
+          defaultValue={product?.description || ''}
           required
         />
         {error.description && <div className='text-destructive text-sm'>{error.description}</div>}
@@ -50,8 +55,9 @@ export function ProductForm() {
           type='file'
           id='file'
           name='file'
-          required
+          required={product == null}
         />
+        {product != null && <div className='text-muted-foreground'>{product.filePath}</div>}
         {error.file && <div className='text-destructive text-sm'>{error.file}</div>}
       </div>
       <div className='space-y-2'>
@@ -60,8 +66,16 @@ export function ProductForm() {
           type='file'
           id='image'
           name='image'
-          required
+          required={product == null}
         />
+        {product != null && (
+          <Image
+            src={product.imagePath}
+            height='200'
+            width='200'
+            alt='Product Image'
+          />
+        )}
         {error.image && <div className='text-destructive text-sm'>{error.image}</div>}
       </div>
       <SubmitButton />
