@@ -2,8 +2,8 @@
 
 import { z } from 'zod'
 import db from '@/lib/prisma'
-import { redirect } from 'next/navigation'
-import { put } from '@vercel/blob'
+import { notFound, redirect } from 'next/navigation'
+import { del, put } from '@vercel/blob'
 
 const productSchema = z.object({
   name: z.string().min(1),
@@ -13,10 +13,12 @@ const productSchema = z.object({
   image: z.instanceof(File).refine((file) => file.size > 0),
 })
 
-export async function addProduct(formData: FormData) {
+export async function addProduct(prevState: unknown, formData: FormData) {
   const result = productSchema.safeParse(Object.fromEntries(formData.entries()))
   if (result.success === false) {
-    return
+    console.log(result.error.format())
+
+    return result.error.formErrors.fieldErrors
   }
 
   const data = result.data
@@ -49,4 +51,20 @@ export async function addProduct(formData: FormData) {
   })
 
   redirect('/admin/products')
+}
+
+export async function toggleProductAvailability(id: string, isAvailable: boolean) {
+  await db.product.update({
+    where: { id },
+    data: { isAvailable: !isAvailable },
+  })
+  console.log(isAvailable)
+}
+
+export async function deleteProduct(id: string) {
+  const product = await db.product.delete({ where: { id } })
+  await del(product.imagePath)
+  await del(product.filePath)
+
+  if (product == null) return notFound()
 }

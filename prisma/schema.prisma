@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/app/generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -18,7 +18,7 @@ model Product {
   isAvailable          Boolean                @default(true)
   createdAt            DateTime               @default(now())
   updateAt             DateTime               @updatedAt
-  order                Order[]
+  orders               Order[]
   downloadVerification DownloadVerification[]
 }
 
