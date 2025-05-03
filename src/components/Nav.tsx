@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { ComponentProps, ReactNode } from 'react'
 
 export function Nav({ children }: { children: ReactNode }) {
-  return <nav className='bg-primary text-primary-foreground flex justify-center px-4'>{children}</nav>
+  return <nav className='bg-primary text-primary-foreground'>{children}</nav>
 }
 
 export function NavLink(props: Omit<ComponentProps<typeof Link>, 'className'>) {

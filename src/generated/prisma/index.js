@@ -153,7 +153,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Wad\\Desktop\\apps\\serenity-next\\src\\generated\\prisma",
+      "value": "C:\\Users\\Wad\\Desktop\\apps\\freedoom-next\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -167,7 +167,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Wad\\Desktop\\apps\\serenity-next\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Wad\\Desktop\\apps\\freedoom-next\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
