@@ -14,7 +14,7 @@ type ProductCardProps = {
 
 export function ProductCard({ id, name, price, description, imagePath }: ProductCardProps) {
   return (
-    <Card className='flex flex-col overflow-hidden'>
+    <Card className='flex flex-col gap-4 pt-0 pb-4 overflow-hidden'>
       <div className='relative w-full h-auto aspect-video'>
         <Image
           src={imagePath}
@@ -27,10 +27,10 @@ export function ProductCard({ id, name, price, description, imagePath }: Product
         <CardTitle>{name}</CardTitle>
         <CardDescription>{formatCurrency(price)}</CardDescription>
       </CardHeader>
-      <CardContent className='flex-grow'>
+      <CardContent className='flex-grow px-4'>
         <p className='line-clamp-4'>{description}</p>
       </CardContent>
-      <CardFooter>
+      <CardFooter className='px-4'>
         <Button
           asChild
           size='lg'
@@ -44,8 +44,8 @@ export function ProductCard({ id, name, price, description, imagePath }: Product
 
 export function ProductCardSkeleton() {
   return (
-    <Card className='flex flex-col overflow-hidden animate-pulse'>
-      <div className='w-full bg-gray-300 h-[587px]' />
+    <Card className='flex flex-col gap-4 pt-0 pb-4 overflow-hidden animate-pulse'>
+      <div className='w-full bg-gray-300 h-[369px]' />
       <CardHeader>
         <CardTitle>
           <div className='w-3/4 h-6 bg-gray-300 rounded-full' />

@@ -1,10 +1,10 @@
 import { ProductCard, ProductCardSkeleton } from '@/components/ProductCard'
 import { Button } from '@/components/ui/button'
 import { Product } from '@/generated/prisma'
-import db from '@/lib/prisma'
 import { ArrowRight } from 'lucide-react'
-import Link from 'next/link'
 import { Suspense } from 'react'
+import db from '@/lib/prisma'
+import Link from 'next/link'
 
 export default function HomePage() {
   return (
@@ -40,10 +40,12 @@ function ProductGridSection({ productsFetcher, title }: ProductGridSectionProps)
           </Link>
         </Button>
       </div>
-      <div className='grid grid-cols-3 gap-4 md:grid-cols-3 lg:grid-cols-4'>
+      <div className='grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6'>
         <Suspense
           fallback={
             <>
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
               <ProductCardSkeleton />
               <ProductCardSkeleton />
               <ProductCardSkeleton />
@@ -68,14 +70,16 @@ async function ProductSuspense({ productsFetcher }: { productsFetcher: () => Pro
 
 function getPopularProducts() {
   return db.product.findMany({
+    where: { isAvailable: true },
     orderBy: { orders: { _count: 'desc' } },
-    take: 4,
+    take: 6,
   })
 }
 
 function getNewestProducts() {
   return db.product.findMany({
+    where: { isAvailable: true },
     orderBy: { createdAt: 'desc' },
-    take: 4,
+    take: 6,
   })
 }
