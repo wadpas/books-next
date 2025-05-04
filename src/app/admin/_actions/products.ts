@@ -43,14 +43,8 @@ export async function addProduct(prevState: unknown, formData: FormData) {
 }
 
 const editProductSchema = productSchema.extend({
-  file: z
-    .instanceof(File)
-    .refine((file) => file.size === 0)
-    .optional(),
-  image: z
-    .instanceof(File)
-    .refine((file) => file.size === 0)
-    .optional(),
+  file: z.instanceof(File).optional(),
+  image: z.instanceof(File).optional(),
 })
 
 export async function updateProduct(id: string, prevState: unknown, formData: FormData) {

@@ -26,7 +26,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
           defaultValue={product?.name || ''}
           required
         />
-        {error.name && <div className='text-destructive text-sm'>{error.name}</div>}
+        {error.name && <div className='text-sm text-destructive'>{error.name}</div>}
       </div>
       <div className='space-y-2'>
         <Label htmlFor='price'>Price</Label>
@@ -37,7 +37,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
           defaultValue={product?.price || ''}
           required
         />
-        {error.price && <div className='text-destructive text-sm'>{error.price}</div>}
+        {error.price && <div className='text-sm text-destructive'>{error.price}</div>}
       </div>
       <div className='space-y-2'>
         <Label htmlFor='description'>Description</Label>
@@ -47,7 +47,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
           defaultValue={product?.description || ''}
           required
         />
-        {error.description && <div className='text-destructive text-sm'>{error.description}</div>}
+        {error.description && <div className='text-sm text-destructive'>{error.description}</div>}
       </div>
       <div className='space-y-2'>
         <Label htmlFor='file'>File</Label>
@@ -58,7 +58,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
           required={product == null}
         />
         {product != null && <div className='text-muted-foreground'>{product.filePath}</div>}
-        {error.file && <div className='text-destructive text-sm'>{error.file}</div>}
+        {error.file && <div className='text-sm text-destructive'>{error.file}</div>}
       </div>
       <div className='space-y-2'>
         <Label htmlFor='image'>Image</Label>
@@ -76,7 +76,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
             alt='Product Image'
           />
         )}
-        {error.image && <div className='text-destructive text-sm'>{error.image}</div>}
+        {error.image && <div className='text-sm text-destructive'>{error.image}</div>}
       </div>
       <SubmitButton />
     </form>

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ComponentProps, ReactNode } from 'react'
 
-export function Nav({ children }: { children: ReactNode }) {
+export function Navbar({ children }: { children: ReactNode }) {
   return <nav className='bg-primary text-primary-foreground'>{children}</nav>
 }
 

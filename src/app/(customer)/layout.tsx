@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navbar>
@@ -21,13 +21,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               />
             </Link>
           </div>
-          <NavLink href='/admin'>Dashboard</NavLink>
-          <NavLink href='/admin/products'>Products</NavLink>
-          <NavLink href='/admin/users'>Customers</NavLink>
-          <NavLink href='/admin/orders'>Sales</NavLink>
+          <NavLink href='/'>Home</NavLink>
+          <NavLink href='/products'>Products</NavLink>
+          <NavLink href='/orders'>Orders</NavLink>
         </div>
       </Navbar>
-      <div className='w-[1600px] h-screen p-4 mx-auto my-4'>{children}</div>
+      <div className='w-[1600px] h-screen mx-auto p-4 my-4'>{children}</div>
     </>
   )
 }
