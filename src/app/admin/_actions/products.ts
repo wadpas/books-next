@@ -4,6 +4,7 @@ import { z } from 'zod'
 import db from '@/lib/prisma'
 import { notFound, redirect } from 'next/navigation'
 import { del, put } from '@vercel/blob'
+import { revalidatePath } from 'next/cache'
 
 const productSchema = z.object({
   name: z.string().min(1),
@@ -39,6 +40,8 @@ export async function addProduct(prevState: unknown, formData: FormData) {
     },
   })
 
+  revalidatePath('/')
+  revalidatePath('/products')
   redirect('/admin/products')
 }
 
@@ -84,6 +87,8 @@ export async function updateProduct(id: string, prevState: unknown, formData: Fo
     },
   })
 
+  revalidatePath('/')
+  revalidatePath('/products')
   redirect('/admin/products')
 }
 
@@ -92,7 +97,8 @@ export async function toggleProductAvailability(id: string, isAvailable: boolean
     where: { id },
     data: { isAvailable: !isAvailable },
   })
-  console.log(isAvailable)
+  revalidatePath('/')
+  revalidatePath('/products')
 }
 
 export async function deleteProduct(id: string) {
@@ -101,4 +107,7 @@ export async function deleteProduct(id: string) {
   await del(product.imagePath)
 
   if (product == null) return notFound()
+
+  revalidatePath('/')
+  revalidatePath('/products')
 }

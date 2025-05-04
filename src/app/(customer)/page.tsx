@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { Suspense } from 'react'
 import db from '@/lib/prisma'
 import Link from 'next/link'
+import { cache } from '@/lib/cache'
 
 export default function HomePage() {
   return (
@@ -68,18 +69,26 @@ async function ProductSuspense({ productsFetcher }: { productsFetcher: () => Pro
   ))
 }
 
-function getPopularProducts() {
-  return db.product.findMany({
-    where: { isAvailable: true },
-    orderBy: { orders: { _count: 'desc' } },
-    take: 6,
-  })
-}
+const getPopularProducts = cache(
+  () => {
+    return db.product.findMany({
+      where: { isAvailable: true },
+      orderBy: { orders: { _count: 'desc' } },
+      take: 6,
+    })
+  },
+  ['/', 'getPopularProducts'],
+  { revalidate: 60 * 60 * 24 }
+)
 
-function getNewestProducts() {
-  return db.product.findMany({
-    where: { isAvailable: true },
-    orderBy: { createdAt: 'desc' },
-    take: 6,
-  })
-}
+const getNewestProducts = cache(
+  () => {
+    return db.product.findMany({
+      where: { isAvailable: true },
+      orderBy: { createdAt: 'desc' },
+      take: 6,
+    })
+  },
+  ['/', 'getNewestProducts'],
+  { revalidate: 60 * 60 * 24 }
+)

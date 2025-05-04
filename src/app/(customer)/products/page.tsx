@@ -2,6 +2,7 @@ import { ProductCard, ProductCardSkeleton } from '@/components/ProductCard'
 import { Product } from '@/generated/prisma'
 import { Suspense } from 'react'
 import db from '@/lib/prisma'
+import { cache } from '@/lib/cache'
 
 export default function ProductsPage() {
   return (
@@ -32,8 +33,12 @@ async function ProductSuspense({ productsFetcher }: { productsFetcher: () => Pro
   ))
 }
 
-function getProducts() {
-  return db.product.findMany({
-    where: { isAvailable: true },
-  })
-}
+const getProducts = cache(
+  () => {
+    return db.product.findMany({
+      where: { isAvailable: true },
+    })
+  },
+  ['/product', 'getProducts'],
+  { revalidate: 60 * 60 * 24 }
+)
