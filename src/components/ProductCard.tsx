@@ -23,7 +23,7 @@ export function ProductCard({ id, name, price, description, imagePath }: Product
           alt={name}
         />
       </div>
-      <CardHeader>
+      <CardHeader className='px-4'>
         <CardTitle>{name}</CardTitle>
         <CardDescription>{formatCurrency(price)}</CardDescription>
       </CardHeader>

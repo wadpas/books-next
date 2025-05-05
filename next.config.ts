@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     },
   },
   images: {
-    domains: ['nbtnpxas3dbkrjhb.public.blob.vercel-storage.com'],
+    domains: ['nbtnpxas3dbkrjhb.public.blob.vercel-storage.com', 'static.yakaboo.ua', 'content2.rozetka.com.ua'],
   },
 }
 

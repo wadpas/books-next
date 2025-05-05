@@ -5,6 +5,7 @@ import db from '@/lib/prisma'
 import { notFound, redirect } from 'next/navigation'
 import { del, put } from '@vercel/blob'
 import { revalidatePath } from 'next/cache'
+import slugify from 'slugify'
 
 const productSchema = z.object({
   name: z.string().min(1),
@@ -22,13 +23,20 @@ export async function addProduct(prevState: unknown, formData: FormData) {
 
   const data = result.data
 
-  const { url: filePath } = await put(`products/${data.file.name}`, Buffer.from(await data.file.arrayBuffer()), {
-    access: 'public',
-  })
+  const [author, title, fileExt] = slugify(data.file.name, { lower: true, locale: 'uk' }).split('.')
+  const imageExt = data.image.name.split('.').pop()
 
-  const { url: imagePath } = await put(`images/${data.image.name}`, Buffer.from(await data.image.arrayBuffer()), {
-    access: 'public',
-  })
+  const { url: filePath } = await put(
+    `${author}/${title.slice(1, -7)}.${fileExt}`,
+    Buffer.from(await data.file.arrayBuffer()),
+    { access: 'public' }
+  )
+
+  const { url: imagePath } = await put(
+    `${author}/${title.slice(1, -7)}.${imageExt}`,
+    Buffer.from(await data.image.arrayBuffer()),
+    { access: 'public' }
+  )
 
   await db.product.create({
     data: {
