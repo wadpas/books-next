@@ -46,6 +46,12 @@ export default async function SuccessPage({ searchParams }: { searchParams: Prom
               <Link href={`/products/${product.id}/purchase`}>Try Again</Link>
             )}
           </Button>
+          <Button
+            className='mt-4'
+            size='lg'
+            asChild>
+            <a href={`/${product.filePath}`}>Download</a>
+          </Button>
         </div>
       </div>
     </div>

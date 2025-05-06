@@ -10,9 +10,10 @@ type ProductCardProps = {
   price: number
   description: string
   imagePath: string
+  filePath: string
 }
 
-export function ProductCard({ id, name, price, description, imagePath }: ProductCardProps) {
+export function ProductCard({ id, name, price, description, imagePath, filePath }: ProductCardProps) {
   return (
     <Card className='flex flex-col gap-4 pt-0 pb-4 overflow-hidden'>
       <div className='relative w-full h-auto aspect-video'>
@@ -30,12 +31,18 @@ export function ProductCard({ id, name, price, description, imagePath }: Product
       <CardContent className='flex-grow px-4'>
         <p className='line-clamp-4'>{description}</p>
       </CardContent>
-      <CardFooter className='px-4'>
+      <CardFooter className='px-4 flex flex-col'>
         <Button
           asChild
           size='lg'
           className='w-full'>
           <Link href={`/products/${id}/purchase`}>Purchase</Link>
+        </Button>
+        <Button
+          className='mt-4'
+          size='lg'
+          asChild>
+          <a href={filePath}>Download</a>
         </Button>
       </CardFooter>
     </Card>
