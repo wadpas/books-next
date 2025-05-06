@@ -66,20 +66,6 @@ function Form({ price, productId }: { price: number; productId: string }) {
 
     setIsLoading(true)
 
-    const orderExists = await userOrderExists(email, productId)
-
-    if (orderExists) {
-      setErrorMessage('You have already purchased this product. Try downloading it from the My Orders page')
-      setIsLoading(false)
-      return
-    }
-
-    if (orderExists) {
-      setErrorMessage('You have already purchased this product. Try downloading it from the My Orders page')
-      setIsLoading(false)
-      return
-    }
-
     stripe
       .confirmPayment({
         elements,
