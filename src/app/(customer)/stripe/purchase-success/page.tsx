@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button'
 import db from '@/lib/prisma'
 import { formatCurrency } from '@/lib/formatters'
 import Image from 'next/image'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Stripe from 'stripe'
 
@@ -40,17 +39,7 @@ export default async function SuccessPage({ searchParams }: { searchParams: Prom
             className='mt-4'
             size='lg'
             asChild>
-            {isSuccess ? (
-              <a href={`/products/download/${await createDownloadVerification(product.id)}`}>Download</a>
-            ) : (
-              <Link href={`/products/${product.id}/purchase`}>Try Again</Link>
-            )}
-          </Button>
-          <Button
-            className='mt-4'
-            size='lg'
-            asChild>
-            <a href={`/${product.filePath}`}>Download</a>
+            <a href={product.filePath}>Download</a>
           </Button>
         </div>
       </div>
