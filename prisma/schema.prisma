@@ -20,6 +20,7 @@ model Product {
   updateAt             DateTime               @updatedAt
   orders               Order[]
   downloadVerification DownloadVerification[]
+  discounts            Discount[]
 }
 
 model User {
@@ -31,14 +32,16 @@ model User {
 }
 
 model Order {
-  id        String   @id @default(uuid())
-  total     Int
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  productId String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Restrict)
-  createdAt DateTime @default(now())
-  updateAt  DateTime @updatedAt
+  id         String    @id @default(uuid())
+  total      Int
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId  String
+  product    Product   @relation(fields: [productId], references: [id], onDelete: Restrict)
+  createdAt  DateTime  @default(now())
+  updateAt   DateTime  @updatedAt
+  discount   Discount? @relation(fields: [discountId], references: [id], onDelete: Restrict)
+  discountId String?
 }
 
 model DownloadVerification {
@@ -47,4 +50,24 @@ model DownloadVerification {
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   expiresAt DateTime
   createdAt DateTime @default(now())
+}
+
+model Discount {
+  id           String       @id @default(uuid())
+  code         String       @unique
+  amount       Int
+  discountType DiscountType
+  uses         Int          @default(0)
+  isActive     Boolean      @default(true)
+  allProducts  Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  limit        Int?
+  expiresAt    DateTime?
+  products     Product[]
+  orders       Order[]
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
 }

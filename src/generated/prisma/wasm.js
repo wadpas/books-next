@@ -142,7 +142,8 @@ exports.Prisma.OrderScalarFieldEnum = {
   userId: 'userId',
   productId: 'productId',
   createdAt: 'createdAt',
-  updateAt: 'updateAt'
+  updateAt: 'updateAt',
+  discountId: 'discountId'
 };
 
 exports.Prisma.DownloadVerificationScalarFieldEnum = {
@@ -150,6 +151,19 @@ exports.Prisma.DownloadVerificationScalarFieldEnum = {
   productId: 'productId',
   expiresAt: 'expiresAt',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.DiscountScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  amount: 'amount',
+  discountType: 'discountType',
+  uses: 'uses',
+  isActive: 'isActive',
+  allProducts: 'allProducts',
+  createdAt: 'createdAt',
+  limit: 'limit',
+  expiresAt: 'expiresAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -162,12 +176,21 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.DiscountType = exports.$Enums.DiscountType = {
+  PERCENTAGE: 'PERCENTAGE',
+  FIXED: 'FIXED'
+};
 
 exports.Prisma.ModelName = {
   Product: 'Product',
   User: 'User',
   Order: 'Order',
-  DownloadVerification: 'DownloadVerification'
+  DownloadVerification: 'DownloadVerification',
+  Discount: 'Discount'
 };
 
 /**
