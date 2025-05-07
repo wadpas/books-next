@@ -25,6 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <NavLink href='/admin/products'>Products</NavLink>
           <NavLink href='/admin/users'>Customers</NavLink>
           <NavLink href='/admin/orders'>Sales</NavLink>
+          <NavLink href='/admin/discounts'>Coupons</NavLink>
         </div>
       </Navbar>
       <div className='w-[1600px] h-screen p-4 mx-auto my-4'>{children}</div>
