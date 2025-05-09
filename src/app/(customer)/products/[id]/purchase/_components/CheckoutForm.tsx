@@ -5,83 +5,37 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { getDiscountedAmount } from '@/lib/discountClient'
+import { Discount, Product } from '@/generated/prisma'
 import { formatCurrency, formatDiscount } from '@/lib/formatters'
 import { Elements, LinkAuthenticationElement, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-import Image from 'next/image'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { FormEvent, useRef, useState } from 'react'
 
-type CheckoutFormProps = {
-  product: {
-    id: string
-    imagePath: string
-    name: string
-    price: number
-    description: string
-  }
-  discount?: {
-    id: string
-    amount: number
-    type: any
-  }
-}
-
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string)
-
-export function CheckoutForm({ product, discount }: CheckoutFormProps) {
-  const amount = discount == null ? product.price : getDiscountedAmount(discount, product.price)
-  const isDiscounted = amount !== product.price
-
+export function CheckoutFormWrapper({
+  product,
+  discount,
+  amount,
+}: {
+  product: Product
+  discount?: Discount
+  amount: number
+}) {
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string)
   return (
-    <div className='max-w-5xl w-full mx-auto space-y-8'>
-      <div className='flex gap-4 items-center'>
-        <div className='aspect-[2/3] flex-shrink-0 relative w-96'>
-          <Image
-            src={product.imagePath}
-            fill
-            alt={product.name}
-            className='object-cover'
-          />
-        </div>
-        <div>
-          <div className='text-lg flex gap-4 items-baseline'>
-            <div className={isDiscounted ? 'line-through text-muted-foreground text-sm' : ''}>
-              {formatCurrency(product.price)}
-            </div>
-            {isDiscounted && <div className=''>{formatCurrency(amount)}</div>}
-          </div>
-          <h1 className='text-2xl font-bold'>{product.name}</h1>
-          <div className='line-clamp-3 text-muted-foreground'>{product.description}</div>
-        </div>
-      </div>
-      <Elements
-        options={{ amount, mode: 'payment', currency: 'usd' }}
-        stripe={stripePromise}>
-        <Form
-          price={amount}
-          productId={product.id}
-          discount={discount}
-        />
-      </Elements>
-    </div>
+    <Elements
+      options={{ amount, mode: 'payment', currency: 'usd' }}
+      stripe={stripePromise}>
+      <CheckoutForm
+        amount={amount}
+        product={product}
+        discount={discount}
+      />
+    </Elements>
   )
 }
 
-function Form({
-  price,
-  productId,
-  discount,
-}: {
-  price: number
-  productId: string
-  discount?: {
-    id: string
-    amount: number
-    type: any
-  }
-}) {
+function CheckoutForm({ product, discount, amount }: { product: Product; discount?: Discount; amount: number }) {
   const stripe = useStripe()
   const elements = useElements()
   const [isLoading, setIsLoading] = useState(false)
@@ -89,7 +43,6 @@ function Form({
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
-  const coupon = searchParams.get('coupon')
   const [errorMessage, setErrorMessage] = useState<string>()
   const [email, setEmail] = useState<string>()
 
@@ -106,7 +59,7 @@ function Form({
       return
     }
 
-    const paymentIntent = await createPaymentIntent(email, productId, discount?.id)
+    const paymentIntent = await createPaymentIntent(product, amount, discount)
     if (paymentIntent.error != null) {
       setErrorMessage(paymentIntent.error)
       setIsLoading(false)
@@ -151,7 +104,7 @@ function Form({
                 type='text'
                 name='discountCode'
                 className='max-w-xs w-full'
-                defaultValue={coupon || ''}
+                defaultValue='Developer'
                 ref={discountRef}
               />
               <Button
@@ -172,7 +125,7 @@ function Form({
             className='w-full'
             size='lg'
             disabled={stripe == null || elements == null || isLoading}>
-            {isLoading ? 'Purchasing...' : `Purchase - ${formatCurrency(price)}`}
+            {isLoading ? 'Purchasing...' : `Purchase - ${formatCurrency(amount)}`}
           </Button>
         </CardFooter>
       </Card>

@@ -5,8 +5,8 @@ import OrderHistoryEmail from '@/email/OrderHistory'
 import { Resend } from 'resend'
 import { z } from 'zod'
 import Stripe from 'stripe'
-import { usableDiscountWhere } from '@/lib/discountServer'
-import { getDiscountedAmount } from '@/lib/discountClient'
+import { getDiscountedAmount } from '@/lib/discount'
+import { Discount, Product } from '@/generated/prisma'
 
 const emailSchema = z.string().email()
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
@@ -81,34 +81,7 @@ export async function emailOrderHistory(
   }
 }
 
-export async function createPaymentIntent(email: string, productId: string, discountId?: string) {
-  const product = await db.product.findUnique({ where: { id: productId } })
-  if (product == null) return { error: 'Unexpected Error' }
-
-  const discount =
-    discountId == null
-      ? null
-      : await db.discount.findUnique({
-          where: { id: discountId, ...usableDiscountWhere(product.id) },
-        })
-
-  if (discount == null && discountId != null) {
-    return { error: 'Coupon has expired' }
-  }
-
-  // const existingOrder = await db.order.findFirst({
-  //   where: { user: { email }, productId },
-  //   select: { id: true },
-  // })
-
-  // if (existingOrder != null) {
-  //   return {
-  //     error: 'You have already purchased this product. Try downloading it from the My Orders page',
-  //   }
-  // }
-
-  const amount = discount == null ? product.price : getDiscountedAmount(discount, product.price)
-
+export async function createPaymentIntent(product: Product, amount: number, discount?: Discount) {
   const paymentIntent = await stripe.paymentIntents.create({
     amount,
     currency: 'USD',
