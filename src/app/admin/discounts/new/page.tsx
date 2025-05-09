@@ -1,6 +1,6 @@
 import db from '@/lib/prisma'
 import { PageHeader } from '../../_components/PageHeader'
-// import { DiscountForm } from '../_components/DiscountForm'
+import { DiscountForm } from '../_components/DiscountForm'
 
 export default async function NewDiscountPage() {
   const products = await db.product.findMany({
@@ -11,7 +11,7 @@ export default async function NewDiscountPage() {
   return (
     <>
       <PageHeader>Add Discount</PageHeader>
-      {/* <DiscountForm products={products} /> */}
+      <DiscountForm products={products} />
     </>
   )
 }

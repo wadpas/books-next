@@ -157,7 +157,7 @@ exports.Prisma.DiscountScalarFieldEnum = {
   id: 'id',
   code: 'code',
   amount: 'amount',
-  discountType: 'discountType',
+  type: 'type',
   uses: 'uses',
   isActive: 'isActive',
   allProducts: 'allProducts',

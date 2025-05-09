@@ -5864,7 +5864,7 @@ export namespace Prisma {
     id: string | null
     code: string | null
     amount: number | null
-    discountType: $Enums.DiscountType | null
+    type: $Enums.DiscountType | null
     uses: number | null
     isActive: boolean | null
     allProducts: boolean | null
@@ -5877,7 +5877,7 @@ export namespace Prisma {
     id: string | null
     code: string | null
     amount: number | null
-    discountType: $Enums.DiscountType | null
+    type: $Enums.DiscountType | null
     uses: number | null
     isActive: boolean | null
     allProducts: boolean | null
@@ -5890,7 +5890,7 @@ export namespace Prisma {
     id: number
     code: number
     amount: number
-    discountType: number
+    type: number
     uses: number
     isActive: number
     allProducts: number
@@ -5917,7 +5917,7 @@ export namespace Prisma {
     id?: true
     code?: true
     amount?: true
-    discountType?: true
+    type?: true
     uses?: true
     isActive?: true
     allProducts?: true
@@ -5930,7 +5930,7 @@ export namespace Prisma {
     id?: true
     code?: true
     amount?: true
-    discountType?: true
+    type?: true
     uses?: true
     isActive?: true
     allProducts?: true
@@ -5943,7 +5943,7 @@ export namespace Prisma {
     id?: true
     code?: true
     amount?: true
-    discountType?: true
+    type?: true
     uses?: true
     isActive?: true
     allProducts?: true
@@ -6043,7 +6043,7 @@ export namespace Prisma {
     id: string
     code: string
     amount: number
-    discountType: $Enums.DiscountType
+    type: $Enums.DiscountType
     uses: number
     isActive: boolean
     allProducts: boolean
@@ -6075,7 +6075,7 @@ export namespace Prisma {
     id?: boolean
     code?: boolean
     amount?: boolean
-    discountType?: boolean
+    type?: boolean
     uses?: boolean
     isActive?: boolean
     allProducts?: boolean
@@ -6091,7 +6091,7 @@ export namespace Prisma {
     id?: boolean
     code?: boolean
     amount?: boolean
-    discountType?: boolean
+    type?: boolean
     uses?: boolean
     isActive?: boolean
     allProducts?: boolean
@@ -6104,7 +6104,7 @@ export namespace Prisma {
     id?: boolean
     code?: boolean
     amount?: boolean
-    discountType?: boolean
+    type?: boolean
     uses?: boolean
     isActive?: boolean
     allProducts?: boolean
@@ -6117,7 +6117,7 @@ export namespace Prisma {
     id?: boolean
     code?: boolean
     amount?: boolean
-    discountType?: boolean
+    type?: boolean
     uses?: boolean
     isActive?: boolean
     allProducts?: boolean
@@ -6126,7 +6126,7 @@ export namespace Prisma {
     expiresAt?: boolean
   }
 
-  export type DiscountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "amount" | "discountType" | "uses" | "isActive" | "allProducts" | "createdAt" | "limit" | "expiresAt", ExtArgs["result"]["discount"]>
+  export type DiscountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "amount" | "type" | "uses" | "isActive" | "allProducts" | "createdAt" | "limit" | "expiresAt", ExtArgs["result"]["discount"]>
   export type DiscountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | Discount$productsArgs<ExtArgs>
     orders?: boolean | Discount$ordersArgs<ExtArgs>
@@ -6145,7 +6145,7 @@ export namespace Prisma {
       id: string
       code: string
       amount: number
-      discountType: $Enums.DiscountType
+      type: $Enums.DiscountType
       uses: number
       isActive: boolean
       allProducts: boolean
@@ -6580,7 +6580,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Discount", 'String'>
     readonly code: FieldRef<"Discount", 'String'>
     readonly amount: FieldRef<"Discount", 'Int'>
-    readonly discountType: FieldRef<"Discount", 'DiscountType'>
+    readonly type: FieldRef<"Discount", 'DiscountType'>
     readonly uses: FieldRef<"Discount", 'Int'>
     readonly isActive: FieldRef<"Discount", 'Boolean'>
     readonly allProducts: FieldRef<"Discount", 'Boolean'>
@@ -7107,7 +7107,7 @@ export namespace Prisma {
     id: 'id',
     code: 'code',
     amount: 'amount',
-    discountType: 'discountType',
+    type: 'type',
     uses: 'uses',
     isActive: 'isActive',
     allProducts: 'allProducts',
@@ -7491,7 +7491,7 @@ export namespace Prisma {
     id?: StringFilter<"Discount"> | string
     code?: StringFilter<"Discount"> | string
     amount?: IntFilter<"Discount"> | number
-    discountType?: EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
+    type?: EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
     uses?: IntFilter<"Discount"> | number
     isActive?: BoolFilter<"Discount"> | boolean
     allProducts?: BoolFilter<"Discount"> | boolean
@@ -7506,7 +7506,7 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     amount?: SortOrder
-    discountType?: SortOrder
+    type?: SortOrder
     uses?: SortOrder
     isActive?: SortOrder
     allProducts?: SortOrder
@@ -7524,7 +7524,7 @@ export namespace Prisma {
     OR?: DiscountWhereInput[]
     NOT?: DiscountWhereInput | DiscountWhereInput[]
     amount?: IntFilter<"Discount"> | number
-    discountType?: EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
+    type?: EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
     uses?: IntFilter<"Discount"> | number
     isActive?: BoolFilter<"Discount"> | boolean
     allProducts?: BoolFilter<"Discount"> | boolean
@@ -7539,7 +7539,7 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     amount?: SortOrder
-    discountType?: SortOrder
+    type?: SortOrder
     uses?: SortOrder
     isActive?: SortOrder
     allProducts?: SortOrder
@@ -7560,7 +7560,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Discount"> | string
     code?: StringWithAggregatesFilter<"Discount"> | string
     amount?: IntWithAggregatesFilter<"Discount"> | number
-    discountType?: EnumDiscountTypeWithAggregatesFilter<"Discount"> | $Enums.DiscountType
+    type?: EnumDiscountTypeWithAggregatesFilter<"Discount"> | $Enums.DiscountType
     uses?: IntWithAggregatesFilter<"Discount"> | number
     isActive?: BoolWithAggregatesFilter<"Discount"> | boolean
     allProducts?: BoolWithAggregatesFilter<"Discount"> | boolean
@@ -7837,7 +7837,7 @@ export namespace Prisma {
     id?: string
     code: string
     amount: number
-    discountType: $Enums.DiscountType
+    type: $Enums.DiscountType
     uses?: number
     isActive?: boolean
     allProducts?: boolean
@@ -7852,7 +7852,7 @@ export namespace Prisma {
     id?: string
     code: string
     amount: number
-    discountType: $Enums.DiscountType
+    type: $Enums.DiscountType
     uses?: number
     isActive?: boolean
     allProducts?: boolean
@@ -7867,7 +7867,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
-    discountType?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
+    type?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
     uses?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allProducts?: BoolFieldUpdateOperationsInput | boolean
@@ -7882,7 +7882,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
-    discountType?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
+    type?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
     uses?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allProducts?: BoolFieldUpdateOperationsInput | boolean
@@ -7897,7 +7897,7 @@ export namespace Prisma {
     id?: string
     code: string
     amount: number
-    discountType: $Enums.DiscountType
+    type: $Enums.DiscountType
     uses?: number
     isActive?: boolean
     allProducts?: boolean
@@ -7910,7 +7910,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
-    discountType?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
+    type?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
     uses?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allProducts?: BoolFieldUpdateOperationsInput | boolean
@@ -7923,7 +7923,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
-    discountType?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
+    type?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
     uses?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allProducts?: BoolFieldUpdateOperationsInput | boolean
@@ -8280,7 +8280,7 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     amount?: SortOrder
-    discountType?: SortOrder
+    type?: SortOrder
     uses?: SortOrder
     isActive?: SortOrder
     allProducts?: SortOrder
@@ -8299,7 +8299,7 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     amount?: SortOrder
-    discountType?: SortOrder
+    type?: SortOrder
     uses?: SortOrder
     isActive?: SortOrder
     allProducts?: SortOrder
@@ -8312,7 +8312,7 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     amount?: SortOrder
-    discountType?: SortOrder
+    type?: SortOrder
     uses?: SortOrder
     isActive?: SortOrder
     allProducts?: SortOrder
@@ -8981,7 +8981,7 @@ export namespace Prisma {
     id?: string
     code: string
     amount: number
-    discountType: $Enums.DiscountType
+    type: $Enums.DiscountType
     uses?: number
     isActive?: boolean
     allProducts?: boolean
@@ -8995,7 +8995,7 @@ export namespace Prisma {
     id?: string
     code: string
     amount: number
-    discountType: $Enums.DiscountType
+    type: $Enums.DiscountType
     uses?: number
     isActive?: boolean
     allProducts?: boolean
@@ -9088,7 +9088,7 @@ export namespace Prisma {
     id?: StringFilter<"Discount"> | string
     code?: StringFilter<"Discount"> | string
     amount?: IntFilter<"Discount"> | number
-    discountType?: EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
+    type?: EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
     uses?: IntFilter<"Discount"> | number
     isActive?: BoolFilter<"Discount"> | boolean
     allProducts?: BoolFilter<"Discount"> | boolean
@@ -9197,7 +9197,7 @@ export namespace Prisma {
     id?: string
     code: string
     amount: number
-    discountType: $Enums.DiscountType
+    type: $Enums.DiscountType
     uses?: number
     isActive?: boolean
     allProducts?: boolean
@@ -9211,7 +9211,7 @@ export namespace Prisma {
     id?: string
     code: string
     amount: number
-    discountType: $Enums.DiscountType
+    type: $Enums.DiscountType
     uses?: number
     isActive?: boolean
     allProducts?: boolean
@@ -9305,7 +9305,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
-    discountType?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
+    type?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
     uses?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allProducts?: BoolFieldUpdateOperationsInput | boolean
@@ -9319,7 +9319,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
-    discountType?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
+    type?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
     uses?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allProducts?: BoolFieldUpdateOperationsInput | boolean
@@ -9573,7 +9573,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
-    discountType?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
+    type?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
     uses?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allProducts?: BoolFieldUpdateOperationsInput | boolean
@@ -9587,7 +9587,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
-    discountType?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
+    type?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
     uses?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allProducts?: BoolFieldUpdateOperationsInput | boolean
@@ -9601,7 +9601,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
-    discountType?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
+    type?: EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
     uses?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allProducts?: BoolFieldUpdateOperationsInput | boolean

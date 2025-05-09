@@ -53,18 +53,18 @@ model DownloadVerification {
 }
 
 model Discount {
-  id           String       @id @default(uuid())
-  code         String       @unique
-  amount       Int
-  discountType DiscountType
-  uses         Int          @default(0)
-  isActive     Boolean      @default(true)
-  allProducts  Boolean      @default(false)
-  createdAt    DateTime     @default(now())
-  limit        Int?
-  expiresAt    DateTime?
-  products     Product[]
-  orders       Order[]
+  id          String       @id @default(uuid())
+  code        String       @unique
+  amount      Int
+  type        DiscountType
+  uses        Int          @default(0)
+  isActive    Boolean      @default(true)
+  allProducts Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  limit       Int?
+  expiresAt   DateTime?
+  products    Product[]
+  orders      Order[]
 }
 
 enum DiscountType {
