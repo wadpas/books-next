@@ -1,13 +1,16 @@
 'use client'
 
-import { userOrderExists } from '@/app/actions/orders'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { formatCurrency } from '@/lib/formatters'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { getDiscountedAmount } from '@/lib/discountHelpers'
+import { formatCurrency, formatDiscount } from '@/lib/formatters'
 import { Elements, LinkAuthenticationElement, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import Image from 'next/image'
-import { FormEvent, useState } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { FormEvent, useRef, useState } from 'react'
 
 type CheckoutFormProps = {
   product: {
@@ -17,12 +20,20 @@ type CheckoutFormProps = {
     price: number
     description: string
   }
+  discount?: {
+    id: string
+    amount: number
+    type: any
+  }
   clientSecret: string
 }
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string)
 
-export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
+export function CheckoutForm({ product, clientSecret, discount }: CheckoutFormProps) {
+  const amount = discount == null ? product.price : getDiscountedAmount(discount, product.price)
+  const isDiscounted = amount !== product.price
+
   return (
     <div className='max-w-5xl w-full mx-auto space-y-8'>
       <div className='flex gap-4 items-center'>
@@ -35,7 +46,12 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
           />
         </div>
         <div>
-          <div className='text-lg'>{formatCurrency(product.price)}</div>
+          <div className='text-lg flex gap-4 items-baseline'>
+            <div className={isDiscounted ? 'line-through text-muted-foreground text-sm' : ''}>
+              {formatCurrency(product.price)}
+            </div>
+            {isDiscounted && <div className=''>{formatCurrency(amount)}</div>}
+          </div>
           <h1 className='text-2xl font-bold'>{product.name}</h1>
           <div className='line-clamp-3 text-muted-foreground'>{product.description}</div>
         </div>
@@ -46,16 +62,34 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
         <Form
           price={product.price}
           productId={product.id}
+          discount={discount}
         />
       </Elements>
     </div>
   )
 }
 
-function Form({ price, productId }: { price: number; productId: string }) {
+function Form({
+  price,
+  productId,
+  discount,
+}: {
+  price: number
+  productId: string
+  discount?: {
+    id: string
+    amount: number
+    type: any
+  }
+}) {
   const stripe = useStripe()
   const elements = useElements()
   const [isLoading, setIsLoading] = useState(false)
+  const discountRef = useRef<HTMLInputElement>(null)
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+  const coupon = searchParams.get('coupon')
   const [errorMessage, setErrorMessage] = useState<string>()
   const [email, setEmail] = useState<string>()
 
@@ -94,6 +128,29 @@ function Form({ price, productId }: { price: number; productId: string }) {
           <PaymentElement />
           <div className='mt-4'>
             <LinkAuthenticationElement onChange={(e) => setEmail(e.value.email)} />
+          </div>
+          <div className='space-y-2 mt-4'>
+            <Label htmlFor='discountCode'>Coupon</Label>
+            <div className='flex gap-4 items-center'>
+              <Input
+                id='discountCode'
+                type='text'
+                name='discountCode'
+                className='max-w-xs w-full'
+                defaultValue={coupon || ''}
+                ref={discountRef}
+              />
+              <Button
+                type='button'
+                onClick={() => {
+                  const params = new URLSearchParams(searchParams)
+                  params.set('coupon', discountRef.current?.value || '')
+                  router.push(`${pathname}?${params.toString()}`)
+                }}>
+                Apply
+              </Button>
+              {discount != null && <div className='text-muted-foreground'>{formatDiscount(discount)} discount</div>}
+            </div>
           </div>
         </CardContent>
         <CardFooter>
