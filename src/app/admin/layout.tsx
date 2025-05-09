@@ -22,7 +22,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </Link>
           </div>
           <NavLink href='/admin'>Dashboard</NavLink>
-          <NavLink href='/admin/products'>Products</NavLink>
+          <NavLink href='/admin/products'>Книги</NavLink>
           <NavLink href='/admin/users'>Customers</NavLink>
           <NavLink href='/admin/orders'>Sales</NavLink>
           <NavLink href='/admin/discounts'>Coupons</NavLink>

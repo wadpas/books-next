@@ -11,8 +11,8 @@ const productSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   price: z.coerce.number().int().min(1),
+  image: z.string().min(1),
   file: z.instanceof(File).refine((file) => file.size > 0),
-  image: z.instanceof(File).refine((file) => file.size > 0),
 })
 
 export async function addProduct(prevState: unknown, formData: FormData) {
@@ -24,17 +24,10 @@ export async function addProduct(prevState: unknown, formData: FormData) {
   const data = result.data
 
   const [author, title, fileExt] = slugify(data.file.name, { lower: true, locale: 'uk' }).split('.')
-  const imageExt = data.image.name.split('.').pop()
 
   const { url: filePath } = await put(
     `${author}/${title.slice(1, -7)}.${fileExt}`,
     Buffer.from(await data.file.arrayBuffer()),
-    { access: 'public' }
-  )
-
-  const { url: imagePath } = await put(
-    `${author}/${title.slice(1, -7)}.${imageExt}`,
-    Buffer.from(await data.image.arrayBuffer()),
     { access: 'public' }
   )
 
@@ -43,8 +36,8 @@ export async function addProduct(prevState: unknown, formData: FormData) {
       name: data.name,
       description: data.description,
       price: data.price,
+      imagePath: data.image,
       filePath,
-      imagePath,
     },
   })
 

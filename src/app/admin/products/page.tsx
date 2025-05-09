@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { PageHeader } from '../_components/PageHeader'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { CheckCircle2, MoreVertical, XCircle } from 'lucide-react'
+import { CheckCircle2, MoreVertical, XCircle, Plus } from 'lucide-react'
 import { formatCurrency, formatNumber } from '@/lib/formatters'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import Link from 'next/link'
@@ -12,9 +12,12 @@ export default function AdminProductsPage() {
   return (
     <>
       <div className='flex items-center justify-between gap-4'>
-        <PageHeader>Products</PageHeader>
+        <PageHeader>Книги</PageHeader>
         <Button asChild>
-          <Link href='/admin/products/new'>Add Product</Link>
+          <div>
+            <Plus />
+            <Link href='/admin/products/new'>Додати</Link>
+          </div>
         </Button>
       </div>
       <ProductsTable />
@@ -33,16 +36,16 @@ async function ProductsTable() {
     },
   })
 
-  if (products.length === 0) return <p>No products found</p>
+  if (products.length === 0) return <p>Книги не знайдені</p>
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead className='w-0'></TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Price</TableHead>
-          <TableHead>Orders</TableHead>
+          <TableHead>Назва</TableHead>
+          <TableHead>Ціна</TableHead>
+          <TableHead>Замовлення</TableHead>
           <TableHead className='w-0'>
             <span className='sr-only'>Actions</span>
           </TableHead>
