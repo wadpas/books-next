@@ -32,7 +32,6 @@ export default async function SuccessPage({ searchParams }: { searchParams: Prom
           />
         </div>
         <div>
-          <div className='text-lg'>{formatCurrency(product.price)}</div>
           <h1 className='text-2xl font-bold'>{product.name}</h1>
           <div className='line-clamp-3 text-muted-foreground'>{product.description}</div>
           <Button

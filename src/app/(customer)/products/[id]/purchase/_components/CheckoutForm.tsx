@@ -1,10 +1,11 @@
 'use client'
 
+import { createPaymentIntent } from '@/actions/orders'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { getDiscountedAmount } from '@/lib/discountHelpers'
+import { getDiscountedAmount } from '@/lib/discountClient'
 import { formatCurrency, formatDiscount } from '@/lib/formatters'
 import { Elements, LinkAuthenticationElement, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
@@ -25,12 +26,11 @@ type CheckoutFormProps = {
     amount: number
     type: any
   }
-  clientSecret: string
 }
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string)
 
-export function CheckoutForm({ product, clientSecret, discount }: CheckoutFormProps) {
+export function CheckoutForm({ product, discount }: CheckoutFormProps) {
   const amount = discount == null ? product.price : getDiscountedAmount(discount, product.price)
   const isDiscounted = amount !== product.price
 
@@ -57,10 +57,10 @@ export function CheckoutForm({ product, clientSecret, discount }: CheckoutFormPr
         </div>
       </div>
       <Elements
-        options={{ clientSecret }}
+        options={{ amount, mode: 'payment', currency: 'usd' }}
         stripe={stripePromise}>
         <Form
-          price={product.price}
+          price={amount}
           productId={product.id}
           discount={discount}
         />
@@ -99,10 +99,24 @@ function Form({
     if (stripe == null || elements == null || email == null) return
 
     setIsLoading(true)
+    const formSubmit = await elements.submit()
+    if (formSubmit.error != null) {
+      setErrorMessage(formSubmit.error.message)
+      setIsLoading(false)
+      return
+    }
+
+    const paymentIntent = await createPaymentIntent(email, productId, discount?.id)
+    if (paymentIntent.error != null) {
+      setErrorMessage(paymentIntent.error)
+      setIsLoading(false)
+      return
+    }
 
     stripe
       .confirmPayment({
         elements,
+        clientSecret: paymentIntent.clientSecret,
         confirmParams: {
           return_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/stripe/purchase-success`,
         },
