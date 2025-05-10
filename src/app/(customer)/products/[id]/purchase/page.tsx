@@ -1,7 +1,7 @@
 import db from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import { CheckoutFormWrapper } from './_components/CheckoutForm'
-import { getValidDiscount } from '@/actions/discounts'
+import { getValidDiscount } from '@/app/(customer)/actions/discounts'
 import Image from 'next/image'
 import { getDiscountedAmount } from '@/lib/discount'
 import { formatCurrency } from '@/lib/formatters'

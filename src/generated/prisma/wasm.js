@@ -146,13 +146,6 @@ exports.Prisma.OrderScalarFieldEnum = {
   discountId: 'discountId'
 };
 
-exports.Prisma.DownloadVerificationScalarFieldEnum = {
-  id: 'id',
-  productId: 'productId',
-  expiresAt: 'expiresAt',
-  createdAt: 'createdAt'
-};
-
 exports.Prisma.DiscountScalarFieldEnum = {
   id: 'id',
   code: 'code',
@@ -189,7 +182,6 @@ exports.Prisma.ModelName = {
   Product: 'Product',
   User: 'User',
   Order: 'Order',
-  DownloadVerification: 'DownloadVerification',
   Discount: 'Discount'
 };
 

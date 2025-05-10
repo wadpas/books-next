@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import db from '@/lib/prisma'
-import { formatCurrency } from '@/lib/formatters'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Stripe from 'stripe'
@@ -44,15 +43,4 @@ export default async function SuccessPage({ searchParams }: { searchParams: Prom
       </div>
     </div>
   )
-}
-
-async function createDownloadVerification(productId: string) {
-  return (
-    await db.downloadVerification.create({
-      data: {
-        productId,
-        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
-      },
-    })
-  ).id
 }

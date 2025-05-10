@@ -1,6 +1,6 @@
 'use client'
 
-import { createPaymentIntent } from '@/actions/orders'
+import { createPaymentIntent } from '@/app/(customer)/actions/stripe'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'

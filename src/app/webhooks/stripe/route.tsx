@@ -40,13 +40,6 @@ export async function POST(req: NextRequest) {
       select: { orders: { orderBy: { createdAt: 'desc' }, take: 1 } },
     })
 
-    const downloadVerification = await db.downloadVerification.create({
-      data: {
-        productId,
-        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
-      },
-    })
-
     if (discountId != null) {
       await db.discount.update({
         where: { id: discountId },
@@ -62,7 +55,6 @@ export async function POST(req: NextRequest) {
         <PurchaseReceiptEmail
           order={order}
           product={product}
-          downloadVerificationId={downloadVerification.id}
         />
       ),
     })

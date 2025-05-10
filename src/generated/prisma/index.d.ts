@@ -29,11 +29,6 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Order = $Result.DefaultSelection<Prisma.$OrderPayload>
 /**
- * Model DownloadVerification
- * 
- */
-export type DownloadVerification = $Result.DefaultSelection<Prisma.$DownloadVerificationPayload>
-/**
  * Model Discount
  * 
  */
@@ -210,16 +205,6 @@ export class PrismaClient<
     * ```
     */
   get order(): Prisma.OrderDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.downloadVerification`: Exposes CRUD operations for the **DownloadVerification** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more DownloadVerifications
-    * const downloadVerifications = await prisma.downloadVerification.findMany()
-    * ```
-    */
-  get downloadVerification(): Prisma.DownloadVerificationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.discount`: Exposes CRUD operations for the **Discount** model.
@@ -673,7 +658,6 @@ export namespace Prisma {
     Product: 'Product',
     User: 'User',
     Order: 'Order',
-    DownloadVerification: 'DownloadVerification',
     Discount: 'Discount'
   };
 
@@ -693,7 +677,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "product" | "user" | "order" | "downloadVerification" | "discount"
+      modelProps: "product" | "user" | "order" | "discount"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -919,80 +903,6 @@ export namespace Prisma {
           }
         }
       }
-      DownloadVerification: {
-        payload: Prisma.$DownloadVerificationPayload<ExtArgs>
-        fields: Prisma.DownloadVerificationFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.DownloadVerificationFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.DownloadVerificationFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload>
-          }
-          findFirst: {
-            args: Prisma.DownloadVerificationFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.DownloadVerificationFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload>
-          }
-          findMany: {
-            args: Prisma.DownloadVerificationFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload>[]
-          }
-          create: {
-            args: Prisma.DownloadVerificationCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload>
-          }
-          createMany: {
-            args: Prisma.DownloadVerificationCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.DownloadVerificationCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload>[]
-          }
-          delete: {
-            args: Prisma.DownloadVerificationDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload>
-          }
-          update: {
-            args: Prisma.DownloadVerificationUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload>
-          }
-          deleteMany: {
-            args: Prisma.DownloadVerificationDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.DownloadVerificationUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.DownloadVerificationUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload>[]
-          }
-          upsert: {
-            args: Prisma.DownloadVerificationUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DownloadVerificationPayload>
-          }
-          aggregate: {
-            args: Prisma.DownloadVerificationAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateDownloadVerification>
-          }
-          groupBy: {
-            args: Prisma.DownloadVerificationGroupByArgs<ExtArgs>
-            result: $Utils.Optional<DownloadVerificationGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.DownloadVerificationCountArgs<ExtArgs>
-            result: $Utils.Optional<DownloadVerificationCountAggregateOutputType> | number
-          }
-        }
-      }
       Discount: {
         payload: Prisma.$DiscountPayload<ExtArgs>
         fields: Prisma.DiscountFieldRefs
@@ -1154,7 +1064,6 @@ export namespace Prisma {
     product?: ProductOmit
     user?: UserOmit
     order?: OrderOmit
-    downloadVerification?: DownloadVerificationOmit
     discount?: DiscountOmit
   }
 
@@ -1251,13 +1160,11 @@ export namespace Prisma {
 
   export type ProductCountOutputType = {
     orders: number
-    downloadVerification: number
     discounts: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orders?: boolean | ProductCountOutputTypeCountOrdersArgs
-    downloadVerification?: boolean | ProductCountOutputTypeCountDownloadVerificationArgs
     discounts?: boolean | ProductCountOutputTypeCountDiscountsArgs
   }
 
@@ -1277,13 +1184,6 @@ export namespace Prisma {
    */
   export type ProductCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrderWhereInput
-  }
-
-  /**
-   * ProductCountOutputType without action
-   */
-  export type ProductCountOutputTypeCountDownloadVerificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DownloadVerificationWhereInput
   }
 
   /**
@@ -1600,7 +1500,6 @@ export namespace Prisma {
     createdAt?: boolean
     updateAt?: boolean
     orders?: boolean | Product$ordersArgs<ExtArgs>
-    downloadVerification?: boolean | Product$downloadVerificationArgs<ExtArgs>
     discounts?: boolean | Product$discountsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -1644,7 +1543,6 @@ export namespace Prisma {
   export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "filePath" | "imagePath" | "isAvailable" | "createdAt" | "updateAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orders?: boolean | Product$ordersArgs<ExtArgs>
-    downloadVerification?: boolean | Product$downloadVerificationArgs<ExtArgs>
     discounts?: boolean | Product$discountsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -1655,7 +1553,6 @@ export namespace Prisma {
     name: "Product"
     objects: {
       orders: Prisma.$OrderPayload<ExtArgs>[]
-      downloadVerification: Prisma.$DownloadVerificationPayload<ExtArgs>[]
       discounts: Prisma.$DiscountPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2063,7 +1960,6 @@ export namespace Prisma {
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     orders<T extends Product$ordersArgs<ExtArgs> = {}>(args?: Subset<T, Product$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    downloadVerification<T extends Product$downloadVerificationArgs<ExtArgs> = {}>(args?: Subset<T, Product$downloadVerificationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     discounts<T extends Product$discountsArgs<ExtArgs> = {}>(args?: Subset<T, Product$discountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiscountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2512,30 +2408,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
-  }
-
-  /**
-   * Product.downloadVerification
-   */
-  export type Product$downloadVerificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    where?: DownloadVerificationWhereInput
-    orderBy?: DownloadVerificationOrderByWithRelationInput | DownloadVerificationOrderByWithRelationInput[]
-    cursor?: DownloadVerificationWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DownloadVerificationScalarFieldEnum | DownloadVerificationScalarFieldEnum[]
   }
 
   /**
@@ -4792,1051 +4664,6 @@ export namespace Prisma {
 
 
   /**
-   * Model DownloadVerification
-   */
-
-  export type AggregateDownloadVerification = {
-    _count: DownloadVerificationCountAggregateOutputType | null
-    _min: DownloadVerificationMinAggregateOutputType | null
-    _max: DownloadVerificationMaxAggregateOutputType | null
-  }
-
-  export type DownloadVerificationMinAggregateOutputType = {
-    id: string | null
-    productId: string | null
-    expiresAt: Date | null
-    createdAt: Date | null
-  }
-
-  export type DownloadVerificationMaxAggregateOutputType = {
-    id: string | null
-    productId: string | null
-    expiresAt: Date | null
-    createdAt: Date | null
-  }
-
-  export type DownloadVerificationCountAggregateOutputType = {
-    id: number
-    productId: number
-    expiresAt: number
-    createdAt: number
-    _all: number
-  }
-
-
-  export type DownloadVerificationMinAggregateInputType = {
-    id?: true
-    productId?: true
-    expiresAt?: true
-    createdAt?: true
-  }
-
-  export type DownloadVerificationMaxAggregateInputType = {
-    id?: true
-    productId?: true
-    expiresAt?: true
-    createdAt?: true
-  }
-
-  export type DownloadVerificationCountAggregateInputType = {
-    id?: true
-    productId?: true
-    expiresAt?: true
-    createdAt?: true
-    _all?: true
-  }
-
-  export type DownloadVerificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which DownloadVerification to aggregate.
-     */
-    where?: DownloadVerificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DownloadVerifications to fetch.
-     */
-    orderBy?: DownloadVerificationOrderByWithRelationInput | DownloadVerificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: DownloadVerificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DownloadVerifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DownloadVerifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned DownloadVerifications
-    **/
-    _count?: true | DownloadVerificationCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: DownloadVerificationMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: DownloadVerificationMaxAggregateInputType
-  }
-
-  export type GetDownloadVerificationAggregateType<T extends DownloadVerificationAggregateArgs> = {
-        [P in keyof T & keyof AggregateDownloadVerification]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateDownloadVerification[P]>
-      : GetScalarType<T[P], AggregateDownloadVerification[P]>
-  }
-
-
-
-
-  export type DownloadVerificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DownloadVerificationWhereInput
-    orderBy?: DownloadVerificationOrderByWithAggregationInput | DownloadVerificationOrderByWithAggregationInput[]
-    by: DownloadVerificationScalarFieldEnum[] | DownloadVerificationScalarFieldEnum
-    having?: DownloadVerificationScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: DownloadVerificationCountAggregateInputType | true
-    _min?: DownloadVerificationMinAggregateInputType
-    _max?: DownloadVerificationMaxAggregateInputType
-  }
-
-  export type DownloadVerificationGroupByOutputType = {
-    id: string
-    productId: string
-    expiresAt: Date
-    createdAt: Date
-    _count: DownloadVerificationCountAggregateOutputType | null
-    _min: DownloadVerificationMinAggregateOutputType | null
-    _max: DownloadVerificationMaxAggregateOutputType | null
-  }
-
-  type GetDownloadVerificationGroupByPayload<T extends DownloadVerificationGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<DownloadVerificationGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof DownloadVerificationGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], DownloadVerificationGroupByOutputType[P]>
-            : GetScalarType<T[P], DownloadVerificationGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type DownloadVerificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    productId?: boolean
-    expiresAt?: boolean
-    createdAt?: boolean
-    product?: boolean | ProductDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["downloadVerification"]>
-
-  export type DownloadVerificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    productId?: boolean
-    expiresAt?: boolean
-    createdAt?: boolean
-    product?: boolean | ProductDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["downloadVerification"]>
-
-  export type DownloadVerificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    productId?: boolean
-    expiresAt?: boolean
-    createdAt?: boolean
-    product?: boolean | ProductDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["downloadVerification"]>
-
-  export type DownloadVerificationSelectScalar = {
-    id?: boolean
-    productId?: boolean
-    expiresAt?: boolean
-    createdAt?: boolean
-  }
-
-  export type DownloadVerificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productId" | "expiresAt" | "createdAt", ExtArgs["result"]["downloadVerification"]>
-  export type DownloadVerificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductDefaultArgs<ExtArgs>
-  }
-  export type DownloadVerificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductDefaultArgs<ExtArgs>
-  }
-  export type DownloadVerificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductDefaultArgs<ExtArgs>
-  }
-
-  export type $DownloadVerificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "DownloadVerification"
-    objects: {
-      product: Prisma.$ProductPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      productId: string
-      expiresAt: Date
-      createdAt: Date
-    }, ExtArgs["result"]["downloadVerification"]>
-    composites: {}
-  }
-
-  type DownloadVerificationGetPayload<S extends boolean | null | undefined | DownloadVerificationDefaultArgs> = $Result.GetResult<Prisma.$DownloadVerificationPayload, S>
-
-  type DownloadVerificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<DownloadVerificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: DownloadVerificationCountAggregateInputType | true
-    }
-
-  export interface DownloadVerificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DownloadVerification'], meta: { name: 'DownloadVerification' } }
-    /**
-     * Find zero or one DownloadVerification that matches the filter.
-     * @param {DownloadVerificationFindUniqueArgs} args - Arguments to find a DownloadVerification
-     * @example
-     * // Get one DownloadVerification
-     * const downloadVerification = await prisma.downloadVerification.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends DownloadVerificationFindUniqueArgs>(args: SelectSubset<T, DownloadVerificationFindUniqueArgs<ExtArgs>>): Prisma__DownloadVerificationClient<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one DownloadVerification that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {DownloadVerificationFindUniqueOrThrowArgs} args - Arguments to find a DownloadVerification
-     * @example
-     * // Get one DownloadVerification
-     * const downloadVerification = await prisma.downloadVerification.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends DownloadVerificationFindUniqueOrThrowArgs>(args: SelectSubset<T, DownloadVerificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DownloadVerificationClient<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first DownloadVerification that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DownloadVerificationFindFirstArgs} args - Arguments to find a DownloadVerification
-     * @example
-     * // Get one DownloadVerification
-     * const downloadVerification = await prisma.downloadVerification.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends DownloadVerificationFindFirstArgs>(args?: SelectSubset<T, DownloadVerificationFindFirstArgs<ExtArgs>>): Prisma__DownloadVerificationClient<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first DownloadVerification that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DownloadVerificationFindFirstOrThrowArgs} args - Arguments to find a DownloadVerification
-     * @example
-     * // Get one DownloadVerification
-     * const downloadVerification = await prisma.downloadVerification.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends DownloadVerificationFindFirstOrThrowArgs>(args?: SelectSubset<T, DownloadVerificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__DownloadVerificationClient<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more DownloadVerifications that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DownloadVerificationFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all DownloadVerifications
-     * const downloadVerifications = await prisma.downloadVerification.findMany()
-     * 
-     * // Get first 10 DownloadVerifications
-     * const downloadVerifications = await prisma.downloadVerification.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const downloadVerificationWithIdOnly = await prisma.downloadVerification.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends DownloadVerificationFindManyArgs>(args?: SelectSubset<T, DownloadVerificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a DownloadVerification.
-     * @param {DownloadVerificationCreateArgs} args - Arguments to create a DownloadVerification.
-     * @example
-     * // Create one DownloadVerification
-     * const DownloadVerification = await prisma.downloadVerification.create({
-     *   data: {
-     *     // ... data to create a DownloadVerification
-     *   }
-     * })
-     * 
-     */
-    create<T extends DownloadVerificationCreateArgs>(args: SelectSubset<T, DownloadVerificationCreateArgs<ExtArgs>>): Prisma__DownloadVerificationClient<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many DownloadVerifications.
-     * @param {DownloadVerificationCreateManyArgs} args - Arguments to create many DownloadVerifications.
-     * @example
-     * // Create many DownloadVerifications
-     * const downloadVerification = await prisma.downloadVerification.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends DownloadVerificationCreateManyArgs>(args?: SelectSubset<T, DownloadVerificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many DownloadVerifications and returns the data saved in the database.
-     * @param {DownloadVerificationCreateManyAndReturnArgs} args - Arguments to create many DownloadVerifications.
-     * @example
-     * // Create many DownloadVerifications
-     * const downloadVerification = await prisma.downloadVerification.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many DownloadVerifications and only return the `id`
-     * const downloadVerificationWithIdOnly = await prisma.downloadVerification.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends DownloadVerificationCreateManyAndReturnArgs>(args?: SelectSubset<T, DownloadVerificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a DownloadVerification.
-     * @param {DownloadVerificationDeleteArgs} args - Arguments to delete one DownloadVerification.
-     * @example
-     * // Delete one DownloadVerification
-     * const DownloadVerification = await prisma.downloadVerification.delete({
-     *   where: {
-     *     // ... filter to delete one DownloadVerification
-     *   }
-     * })
-     * 
-     */
-    delete<T extends DownloadVerificationDeleteArgs>(args: SelectSubset<T, DownloadVerificationDeleteArgs<ExtArgs>>): Prisma__DownloadVerificationClient<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one DownloadVerification.
-     * @param {DownloadVerificationUpdateArgs} args - Arguments to update one DownloadVerification.
-     * @example
-     * // Update one DownloadVerification
-     * const downloadVerification = await prisma.downloadVerification.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends DownloadVerificationUpdateArgs>(args: SelectSubset<T, DownloadVerificationUpdateArgs<ExtArgs>>): Prisma__DownloadVerificationClient<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more DownloadVerifications.
-     * @param {DownloadVerificationDeleteManyArgs} args - Arguments to filter DownloadVerifications to delete.
-     * @example
-     * // Delete a few DownloadVerifications
-     * const { count } = await prisma.downloadVerification.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends DownloadVerificationDeleteManyArgs>(args?: SelectSubset<T, DownloadVerificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more DownloadVerifications.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DownloadVerificationUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many DownloadVerifications
-     * const downloadVerification = await prisma.downloadVerification.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends DownloadVerificationUpdateManyArgs>(args: SelectSubset<T, DownloadVerificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more DownloadVerifications and returns the data updated in the database.
-     * @param {DownloadVerificationUpdateManyAndReturnArgs} args - Arguments to update many DownloadVerifications.
-     * @example
-     * // Update many DownloadVerifications
-     * const downloadVerification = await prisma.downloadVerification.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more DownloadVerifications and only return the `id`
-     * const downloadVerificationWithIdOnly = await prisma.downloadVerification.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends DownloadVerificationUpdateManyAndReturnArgs>(args: SelectSubset<T, DownloadVerificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one DownloadVerification.
-     * @param {DownloadVerificationUpsertArgs} args - Arguments to update or create a DownloadVerification.
-     * @example
-     * // Update or create a DownloadVerification
-     * const downloadVerification = await prisma.downloadVerification.upsert({
-     *   create: {
-     *     // ... data to create a DownloadVerification
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the DownloadVerification we want to update
-     *   }
-     * })
-     */
-    upsert<T extends DownloadVerificationUpsertArgs>(args: SelectSubset<T, DownloadVerificationUpsertArgs<ExtArgs>>): Prisma__DownloadVerificationClient<$Result.GetResult<Prisma.$DownloadVerificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of DownloadVerifications.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DownloadVerificationCountArgs} args - Arguments to filter DownloadVerifications to count.
-     * @example
-     * // Count the number of DownloadVerifications
-     * const count = await prisma.downloadVerification.count({
-     *   where: {
-     *     // ... the filter for the DownloadVerifications we want to count
-     *   }
-     * })
-    **/
-    count<T extends DownloadVerificationCountArgs>(
-      args?: Subset<T, DownloadVerificationCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], DownloadVerificationCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a DownloadVerification.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DownloadVerificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends DownloadVerificationAggregateArgs>(args: Subset<T, DownloadVerificationAggregateArgs>): Prisma.PrismaPromise<GetDownloadVerificationAggregateType<T>>
-
-    /**
-     * Group by DownloadVerification.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DownloadVerificationGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends DownloadVerificationGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: DownloadVerificationGroupByArgs['orderBy'] }
-        : { orderBy?: DownloadVerificationGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, DownloadVerificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDownloadVerificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the DownloadVerification model
-   */
-  readonly fields: DownloadVerificationFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for DownloadVerification.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__DownloadVerificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the DownloadVerification model
-   */
-  interface DownloadVerificationFieldRefs {
-    readonly id: FieldRef<"DownloadVerification", 'String'>
-    readonly productId: FieldRef<"DownloadVerification", 'String'>
-    readonly expiresAt: FieldRef<"DownloadVerification", 'DateTime'>
-    readonly createdAt: FieldRef<"DownloadVerification", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * DownloadVerification findUnique
-   */
-  export type DownloadVerificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    /**
-     * Filter, which DownloadVerification to fetch.
-     */
-    where: DownloadVerificationWhereUniqueInput
-  }
-
-  /**
-   * DownloadVerification findUniqueOrThrow
-   */
-  export type DownloadVerificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    /**
-     * Filter, which DownloadVerification to fetch.
-     */
-    where: DownloadVerificationWhereUniqueInput
-  }
-
-  /**
-   * DownloadVerification findFirst
-   */
-  export type DownloadVerificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    /**
-     * Filter, which DownloadVerification to fetch.
-     */
-    where?: DownloadVerificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DownloadVerifications to fetch.
-     */
-    orderBy?: DownloadVerificationOrderByWithRelationInput | DownloadVerificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for DownloadVerifications.
-     */
-    cursor?: DownloadVerificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DownloadVerifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DownloadVerifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of DownloadVerifications.
-     */
-    distinct?: DownloadVerificationScalarFieldEnum | DownloadVerificationScalarFieldEnum[]
-  }
-
-  /**
-   * DownloadVerification findFirstOrThrow
-   */
-  export type DownloadVerificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    /**
-     * Filter, which DownloadVerification to fetch.
-     */
-    where?: DownloadVerificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DownloadVerifications to fetch.
-     */
-    orderBy?: DownloadVerificationOrderByWithRelationInput | DownloadVerificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for DownloadVerifications.
-     */
-    cursor?: DownloadVerificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DownloadVerifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DownloadVerifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of DownloadVerifications.
-     */
-    distinct?: DownloadVerificationScalarFieldEnum | DownloadVerificationScalarFieldEnum[]
-  }
-
-  /**
-   * DownloadVerification findMany
-   */
-  export type DownloadVerificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    /**
-     * Filter, which DownloadVerifications to fetch.
-     */
-    where?: DownloadVerificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DownloadVerifications to fetch.
-     */
-    orderBy?: DownloadVerificationOrderByWithRelationInput | DownloadVerificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing DownloadVerifications.
-     */
-    cursor?: DownloadVerificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DownloadVerifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DownloadVerifications.
-     */
-    skip?: number
-    distinct?: DownloadVerificationScalarFieldEnum | DownloadVerificationScalarFieldEnum[]
-  }
-
-  /**
-   * DownloadVerification create
-   */
-  export type DownloadVerificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    /**
-     * The data needed to create a DownloadVerification.
-     */
-    data: XOR<DownloadVerificationCreateInput, DownloadVerificationUncheckedCreateInput>
-  }
-
-  /**
-   * DownloadVerification createMany
-   */
-  export type DownloadVerificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many DownloadVerifications.
-     */
-    data: DownloadVerificationCreateManyInput | DownloadVerificationCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * DownloadVerification createManyAndReturn
-   */
-  export type DownloadVerificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * The data used to create many DownloadVerifications.
-     */
-    data: DownloadVerificationCreateManyInput | DownloadVerificationCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * DownloadVerification update
-   */
-  export type DownloadVerificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    /**
-     * The data needed to update a DownloadVerification.
-     */
-    data: XOR<DownloadVerificationUpdateInput, DownloadVerificationUncheckedUpdateInput>
-    /**
-     * Choose, which DownloadVerification to update.
-     */
-    where: DownloadVerificationWhereUniqueInput
-  }
-
-  /**
-   * DownloadVerification updateMany
-   */
-  export type DownloadVerificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update DownloadVerifications.
-     */
-    data: XOR<DownloadVerificationUpdateManyMutationInput, DownloadVerificationUncheckedUpdateManyInput>
-    /**
-     * Filter which DownloadVerifications to update
-     */
-    where?: DownloadVerificationWhereInput
-    /**
-     * Limit how many DownloadVerifications to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * DownloadVerification updateManyAndReturn
-   */
-  export type DownloadVerificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * The data used to update DownloadVerifications.
-     */
-    data: XOR<DownloadVerificationUpdateManyMutationInput, DownloadVerificationUncheckedUpdateManyInput>
-    /**
-     * Filter which DownloadVerifications to update
-     */
-    where?: DownloadVerificationWhereInput
-    /**
-     * Limit how many DownloadVerifications to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * DownloadVerification upsert
-   */
-  export type DownloadVerificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    /**
-     * The filter to search for the DownloadVerification to update in case it exists.
-     */
-    where: DownloadVerificationWhereUniqueInput
-    /**
-     * In case the DownloadVerification found by the `where` argument doesn't exist, create a new DownloadVerification with this data.
-     */
-    create: XOR<DownloadVerificationCreateInput, DownloadVerificationUncheckedCreateInput>
-    /**
-     * In case the DownloadVerification was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<DownloadVerificationUpdateInput, DownloadVerificationUncheckedUpdateInput>
-  }
-
-  /**
-   * DownloadVerification delete
-   */
-  export type DownloadVerificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-    /**
-     * Filter which DownloadVerification to delete.
-     */
-    where: DownloadVerificationWhereUniqueInput
-  }
-
-  /**
-   * DownloadVerification deleteMany
-   */
-  export type DownloadVerificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which DownloadVerifications to delete
-     */
-    where?: DownloadVerificationWhereInput
-    /**
-     * Limit how many DownloadVerifications to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * DownloadVerification without action
-   */
-  export type DownloadVerificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DownloadVerification
-     */
-    select?: DownloadVerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DownloadVerification
-     */
-    omit?: DownloadVerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DownloadVerificationInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Discount
    */
 
@@ -7093,16 +5920,6 @@ export namespace Prisma {
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
 
 
-  export const DownloadVerificationScalarFieldEnum: {
-    id: 'id',
-    productId: 'productId',
-    expiresAt: 'expiresAt',
-    createdAt: 'createdAt'
-  };
-
-  export type DownloadVerificationScalarFieldEnum = (typeof DownloadVerificationScalarFieldEnum)[keyof typeof DownloadVerificationScalarFieldEnum]
-
-
   export const DiscountScalarFieldEnum: {
     id: 'id',
     code: 'code',
@@ -7242,7 +6059,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updateAt?: DateTimeFilter<"Product"> | Date | string
     orders?: OrderListRelationFilter
-    downloadVerification?: DownloadVerificationListRelationFilter
     discounts?: DiscountListRelationFilter
   }
 
@@ -7257,7 +6073,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updateAt?: SortOrder
     orders?: OrderOrderByRelationAggregateInput
-    downloadVerification?: DownloadVerificationOrderByRelationAggregateInput
     discounts?: DiscountOrderByRelationAggregateInput
   }
 
@@ -7275,7 +6090,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updateAt?: DateTimeFilter<"Product"> | Date | string
     orders?: OrderListRelationFilter
-    downloadVerification?: DownloadVerificationListRelationFilter
     discounts?: DiscountListRelationFilter
   }, "id">
 
@@ -7434,56 +6248,6 @@ export namespace Prisma {
     discountId?: StringNullableWithAggregatesFilter<"Order"> | string | null
   }
 
-  export type DownloadVerificationWhereInput = {
-    AND?: DownloadVerificationWhereInput | DownloadVerificationWhereInput[]
-    OR?: DownloadVerificationWhereInput[]
-    NOT?: DownloadVerificationWhereInput | DownloadVerificationWhereInput[]
-    id?: StringFilter<"DownloadVerification"> | string
-    productId?: StringFilter<"DownloadVerification"> | string
-    expiresAt?: DateTimeFilter<"DownloadVerification"> | Date | string
-    createdAt?: DateTimeFilter<"DownloadVerification"> | Date | string
-    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
-  }
-
-  export type DownloadVerificationOrderByWithRelationInput = {
-    id?: SortOrder
-    productId?: SortOrder
-    expiresAt?: SortOrder
-    createdAt?: SortOrder
-    product?: ProductOrderByWithRelationInput
-  }
-
-  export type DownloadVerificationWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: DownloadVerificationWhereInput | DownloadVerificationWhereInput[]
-    OR?: DownloadVerificationWhereInput[]
-    NOT?: DownloadVerificationWhereInput | DownloadVerificationWhereInput[]
-    productId?: StringFilter<"DownloadVerification"> | string
-    expiresAt?: DateTimeFilter<"DownloadVerification"> | Date | string
-    createdAt?: DateTimeFilter<"DownloadVerification"> | Date | string
-    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
-  }, "id">
-
-  export type DownloadVerificationOrderByWithAggregationInput = {
-    id?: SortOrder
-    productId?: SortOrder
-    expiresAt?: SortOrder
-    createdAt?: SortOrder
-    _count?: DownloadVerificationCountOrderByAggregateInput
-    _max?: DownloadVerificationMaxOrderByAggregateInput
-    _min?: DownloadVerificationMinOrderByAggregateInput
-  }
-
-  export type DownloadVerificationScalarWhereWithAggregatesInput = {
-    AND?: DownloadVerificationScalarWhereWithAggregatesInput | DownloadVerificationScalarWhereWithAggregatesInput[]
-    OR?: DownloadVerificationScalarWhereWithAggregatesInput[]
-    NOT?: DownloadVerificationScalarWhereWithAggregatesInput | DownloadVerificationScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"DownloadVerification"> | string
-    productId?: StringWithAggregatesFilter<"DownloadVerification"> | string
-    expiresAt?: DateTimeWithAggregatesFilter<"DownloadVerification"> | Date | string
-    createdAt?: DateTimeWithAggregatesFilter<"DownloadVerification"> | Date | string
-  }
-
   export type DiscountWhereInput = {
     AND?: DiscountWhereInput | DiscountWhereInput[]
     OR?: DiscountWhereInput[]
@@ -7580,7 +6344,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updateAt?: Date | string
     orders?: OrderCreateNestedManyWithoutProductInput
-    downloadVerification?: DownloadVerificationCreateNestedManyWithoutProductInput
     discounts?: DiscountCreateNestedManyWithoutProductsInput
   }
 
@@ -7595,7 +6358,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updateAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutProductInput
-    downloadVerification?: DownloadVerificationUncheckedCreateNestedManyWithoutProductInput
     discounts?: DiscountUncheckedCreateNestedManyWithoutProductsInput
   }
 
@@ -7610,7 +6372,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUpdateManyWithoutProductNestedInput
-    downloadVerification?: DownloadVerificationUpdateManyWithoutProductNestedInput
     discounts?: DiscountUpdateManyWithoutProductsNestedInput
   }
 
@@ -7625,7 +6386,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutProductNestedInput
-    downloadVerification?: DownloadVerificationUncheckedUpdateManyWithoutProductNestedInput
     discounts?: DiscountUncheckedUpdateManyWithoutProductsNestedInput
   }
 
@@ -7785,54 +6545,6 @@ export namespace Prisma {
     discountId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type DownloadVerificationCreateInput = {
-    id?: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-    product: ProductCreateNestedOneWithoutDownloadVerificationInput
-  }
-
-  export type DownloadVerificationUncheckedCreateInput = {
-    id?: string
-    productId: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-  }
-
-  export type DownloadVerificationUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    product?: ProductUpdateOneRequiredWithoutDownloadVerificationNestedInput
-  }
-
-  export type DownloadVerificationUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    productId?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DownloadVerificationCreateManyInput = {
-    id?: string
-    productId: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-  }
-
-  export type DownloadVerificationUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DownloadVerificationUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    productId?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type DiscountCreateInput = {
     id?: string
     code: string
@@ -7980,12 +6692,6 @@ export namespace Prisma {
     none?: OrderWhereInput
   }
 
-  export type DownloadVerificationListRelationFilter = {
-    every?: DownloadVerificationWhereInput
-    some?: DownloadVerificationWhereInput
-    none?: DownloadVerificationWhereInput
-  }
-
   export type DiscountListRelationFilter = {
     every?: DiscountWhereInput
     some?: DiscountWhereInput
@@ -7993,10 +6699,6 @@ export namespace Prisma {
   }
 
   export type OrderOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type DownloadVerificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8216,27 +6918,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type DownloadVerificationCountOrderByAggregateInput = {
-    id?: SortOrder
-    productId?: SortOrder
-    expiresAt?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type DownloadVerificationMaxOrderByAggregateInput = {
-    id?: SortOrder
-    productId?: SortOrder
-    expiresAt?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type DownloadVerificationMinOrderByAggregateInput = {
-    id?: SortOrder
-    productId?: SortOrder
-    expiresAt?: SortOrder
-    createdAt?: SortOrder
-  }
-
   export type EnumDiscountTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.DiscountType | EnumDiscountTypeFieldRefInput<$PrismaModel>
     in?: $Enums.DiscountType[] | ListEnumDiscountTypeFieldRefInput<$PrismaModel>
@@ -8374,13 +7055,6 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
-  export type DownloadVerificationCreateNestedManyWithoutProductInput = {
-    create?: XOR<DownloadVerificationCreateWithoutProductInput, DownloadVerificationUncheckedCreateWithoutProductInput> | DownloadVerificationCreateWithoutProductInput[] | DownloadVerificationUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: DownloadVerificationCreateOrConnectWithoutProductInput | DownloadVerificationCreateOrConnectWithoutProductInput[]
-    createMany?: DownloadVerificationCreateManyProductInputEnvelope
-    connect?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
-  }
-
   export type DiscountCreateNestedManyWithoutProductsInput = {
     create?: XOR<DiscountCreateWithoutProductsInput, DiscountUncheckedCreateWithoutProductsInput> | DiscountCreateWithoutProductsInput[] | DiscountUncheckedCreateWithoutProductsInput[]
     connectOrCreate?: DiscountCreateOrConnectWithoutProductsInput | DiscountCreateOrConnectWithoutProductsInput[]
@@ -8392,13 +7066,6 @@ export namespace Prisma {
     connectOrCreate?: OrderCreateOrConnectWithoutProductInput | OrderCreateOrConnectWithoutProductInput[]
     createMany?: OrderCreateManyProductInputEnvelope
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-  }
-
-  export type DownloadVerificationUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<DownloadVerificationCreateWithoutProductInput, DownloadVerificationUncheckedCreateWithoutProductInput> | DownloadVerificationCreateWithoutProductInput[] | DownloadVerificationUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: DownloadVerificationCreateOrConnectWithoutProductInput | DownloadVerificationCreateOrConnectWithoutProductInput[]
-    createMany?: DownloadVerificationCreateManyProductInputEnvelope
-    connect?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
   }
 
   export type DiscountUncheckedCreateNestedManyWithoutProductsInput = {
@@ -8441,20 +7108,6 @@ export namespace Prisma {
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
-  export type DownloadVerificationUpdateManyWithoutProductNestedInput = {
-    create?: XOR<DownloadVerificationCreateWithoutProductInput, DownloadVerificationUncheckedCreateWithoutProductInput> | DownloadVerificationCreateWithoutProductInput[] | DownloadVerificationUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: DownloadVerificationCreateOrConnectWithoutProductInput | DownloadVerificationCreateOrConnectWithoutProductInput[]
-    upsert?: DownloadVerificationUpsertWithWhereUniqueWithoutProductInput | DownloadVerificationUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: DownloadVerificationCreateManyProductInputEnvelope
-    set?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
-    disconnect?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
-    delete?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
-    connect?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
-    update?: DownloadVerificationUpdateWithWhereUniqueWithoutProductInput | DownloadVerificationUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: DownloadVerificationUpdateManyWithWhereWithoutProductInput | DownloadVerificationUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: DownloadVerificationScalarWhereInput | DownloadVerificationScalarWhereInput[]
-  }
-
   export type DiscountUpdateManyWithoutProductsNestedInput = {
     create?: XOR<DiscountCreateWithoutProductsInput, DiscountUncheckedCreateWithoutProductsInput> | DiscountCreateWithoutProductsInput[] | DiscountUncheckedCreateWithoutProductsInput[]
     connectOrCreate?: DiscountCreateOrConnectWithoutProductsInput | DiscountCreateOrConnectWithoutProductsInput[]
@@ -8480,20 +7133,6 @@ export namespace Prisma {
     update?: OrderUpdateWithWhereUniqueWithoutProductInput | OrderUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: OrderUpdateManyWithWhereWithoutProductInput | OrderUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
-  }
-
-  export type DownloadVerificationUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<DownloadVerificationCreateWithoutProductInput, DownloadVerificationUncheckedCreateWithoutProductInput> | DownloadVerificationCreateWithoutProductInput[] | DownloadVerificationUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: DownloadVerificationCreateOrConnectWithoutProductInput | DownloadVerificationCreateOrConnectWithoutProductInput[]
-    upsert?: DownloadVerificationUpsertWithWhereUniqueWithoutProductInput | DownloadVerificationUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: DownloadVerificationCreateManyProductInputEnvelope
-    set?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
-    disconnect?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
-    delete?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
-    connect?: DownloadVerificationWhereUniqueInput | DownloadVerificationWhereUniqueInput[]
-    update?: DownloadVerificationUpdateWithWhereUniqueWithoutProductInput | DownloadVerificationUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: DownloadVerificationUpdateManyWithWhereWithoutProductInput | DownloadVerificationUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: DownloadVerificationScalarWhereInput | DownloadVerificationScalarWhereInput[]
   }
 
   export type DiscountUncheckedUpdateManyWithoutProductsNestedInput = {
@@ -8597,20 +7236,6 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
-  }
-
-  export type ProductCreateNestedOneWithoutDownloadVerificationInput = {
-    create?: XOR<ProductCreateWithoutDownloadVerificationInput, ProductUncheckedCreateWithoutDownloadVerificationInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutDownloadVerificationInput
-    connect?: ProductWhereUniqueInput
-  }
-
-  export type ProductUpdateOneRequiredWithoutDownloadVerificationNestedInput = {
-    create?: XOR<ProductCreateWithoutDownloadVerificationInput, ProductUncheckedCreateWithoutDownloadVerificationInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutDownloadVerificationInput
-    upsert?: ProductUpsertWithoutDownloadVerificationInput
-    connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutDownloadVerificationInput, ProductUpdateWithoutDownloadVerificationInput>, ProductUncheckedUpdateWithoutDownloadVerificationInput>
   }
 
   export type ProductCreateNestedManyWithoutDiscountsInput = {
@@ -8955,28 +7580,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type DownloadVerificationCreateWithoutProductInput = {
-    id?: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-  }
-
-  export type DownloadVerificationUncheckedCreateWithoutProductInput = {
-    id?: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-  }
-
-  export type DownloadVerificationCreateOrConnectWithoutProductInput = {
-    where: DownloadVerificationWhereUniqueInput
-    create: XOR<DownloadVerificationCreateWithoutProductInput, DownloadVerificationUncheckedCreateWithoutProductInput>
-  }
-
-  export type DownloadVerificationCreateManyProductInputEnvelope = {
-    data: DownloadVerificationCreateManyProductInput | DownloadVerificationCreateManyProductInput[]
-    skipDuplicates?: boolean
-  }
-
   export type DiscountCreateWithoutProductsInput = {
     id?: string
     code: string
@@ -9037,32 +7640,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updateAt?: DateTimeFilter<"Order"> | Date | string
     discountId?: StringNullableFilter<"Order"> | string | null
-  }
-
-  export type DownloadVerificationUpsertWithWhereUniqueWithoutProductInput = {
-    where: DownloadVerificationWhereUniqueInput
-    update: XOR<DownloadVerificationUpdateWithoutProductInput, DownloadVerificationUncheckedUpdateWithoutProductInput>
-    create: XOR<DownloadVerificationCreateWithoutProductInput, DownloadVerificationUncheckedCreateWithoutProductInput>
-  }
-
-  export type DownloadVerificationUpdateWithWhereUniqueWithoutProductInput = {
-    where: DownloadVerificationWhereUniqueInput
-    data: XOR<DownloadVerificationUpdateWithoutProductInput, DownloadVerificationUncheckedUpdateWithoutProductInput>
-  }
-
-  export type DownloadVerificationUpdateManyWithWhereWithoutProductInput = {
-    where: DownloadVerificationScalarWhereInput
-    data: XOR<DownloadVerificationUpdateManyMutationInput, DownloadVerificationUncheckedUpdateManyWithoutProductInput>
-  }
-
-  export type DownloadVerificationScalarWhereInput = {
-    AND?: DownloadVerificationScalarWhereInput | DownloadVerificationScalarWhereInput[]
-    OR?: DownloadVerificationScalarWhereInput[]
-    NOT?: DownloadVerificationScalarWhereInput | DownloadVerificationScalarWhereInput[]
-    id?: StringFilter<"DownloadVerification"> | string
-    productId?: StringFilter<"DownloadVerification"> | string
-    expiresAt?: DateTimeFilter<"DownloadVerification"> | Date | string
-    createdAt?: DateTimeFilter<"DownloadVerification"> | Date | string
   }
 
   export type DiscountUpsertWithWhereUniqueWithoutProductsInput = {
@@ -9170,7 +7747,6 @@ export namespace Prisma {
     isAvailable?: boolean
     createdAt?: Date | string
     updateAt?: Date | string
-    downloadVerification?: DownloadVerificationCreateNestedManyWithoutProductInput
     discounts?: DiscountCreateNestedManyWithoutProductsInput
   }
 
@@ -9184,7 +7760,6 @@ export namespace Prisma {
     isAvailable?: boolean
     createdAt?: Date | string
     updateAt?: Date | string
-    downloadVerification?: DownloadVerificationUncheckedCreateNestedManyWithoutProductInput
     discounts?: DiscountUncheckedCreateNestedManyWithoutProductsInput
   }
 
@@ -9272,7 +7847,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    downloadVerification?: DownloadVerificationUpdateManyWithoutProductNestedInput
     discounts?: DiscountUpdateManyWithoutProductsNestedInput
   }
 
@@ -9286,7 +7860,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    downloadVerification?: DownloadVerificationUncheckedUpdateManyWithoutProductNestedInput
     discounts?: DiscountUncheckedUpdateManyWithoutProductsNestedInput
   }
 
@@ -9329,78 +7902,6 @@ export namespace Prisma {
     products?: ProductUncheckedUpdateManyWithoutDiscountsNestedInput
   }
 
-  export type ProductCreateWithoutDownloadVerificationInput = {
-    id?: string
-    name: string
-    description: string
-    price: number
-    filePath: string
-    imagePath: string
-    isAvailable?: boolean
-    createdAt?: Date | string
-    updateAt?: Date | string
-    orders?: OrderCreateNestedManyWithoutProductInput
-    discounts?: DiscountCreateNestedManyWithoutProductsInput
-  }
-
-  export type ProductUncheckedCreateWithoutDownloadVerificationInput = {
-    id?: string
-    name: string
-    description: string
-    price: number
-    filePath: string
-    imagePath: string
-    isAvailable?: boolean
-    createdAt?: Date | string
-    updateAt?: Date | string
-    orders?: OrderUncheckedCreateNestedManyWithoutProductInput
-    discounts?: DiscountUncheckedCreateNestedManyWithoutProductsInput
-  }
-
-  export type ProductCreateOrConnectWithoutDownloadVerificationInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutDownloadVerificationInput, ProductUncheckedCreateWithoutDownloadVerificationInput>
-  }
-
-  export type ProductUpsertWithoutDownloadVerificationInput = {
-    update: XOR<ProductUpdateWithoutDownloadVerificationInput, ProductUncheckedUpdateWithoutDownloadVerificationInput>
-    create: XOR<ProductCreateWithoutDownloadVerificationInput, ProductUncheckedCreateWithoutDownloadVerificationInput>
-    where?: ProductWhereInput
-  }
-
-  export type ProductUpdateToOneWithWhereWithoutDownloadVerificationInput = {
-    where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutDownloadVerificationInput, ProductUncheckedUpdateWithoutDownloadVerificationInput>
-  }
-
-  export type ProductUpdateWithoutDownloadVerificationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    filePath?: StringFieldUpdateOperationsInput | string
-    imagePath?: StringFieldUpdateOperationsInput | string
-    isAvailable?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUpdateManyWithoutProductNestedInput
-    discounts?: DiscountUpdateManyWithoutProductsNestedInput
-  }
-
-  export type ProductUncheckedUpdateWithoutDownloadVerificationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    filePath?: StringFieldUpdateOperationsInput | string
-    imagePath?: StringFieldUpdateOperationsInput | string
-    isAvailable?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUncheckedUpdateManyWithoutProductNestedInput
-    discounts?: DiscountUncheckedUpdateManyWithoutProductsNestedInput
-  }
-
   export type ProductCreateWithoutDiscountsInput = {
     id?: string
     name: string
@@ -9412,7 +7913,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updateAt?: Date | string
     orders?: OrderCreateNestedManyWithoutProductInput
-    downloadVerification?: DownloadVerificationCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutDiscountsInput = {
@@ -9426,7 +7926,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updateAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutProductInput
-    downloadVerification?: DownloadVerificationUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutDiscountsInput = {
@@ -9518,12 +8017,6 @@ export namespace Prisma {
     discountId?: string | null
   }
 
-  export type DownloadVerificationCreateManyProductInput = {
-    id?: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-  }
-
   export type OrderUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     total?: IntFieldUpdateOperationsInput | number
@@ -9549,24 +8042,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type DownloadVerificationUpdateWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DownloadVerificationUncheckedUpdateWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DownloadVerificationUncheckedUpdateManyWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DiscountUpdateWithoutProductsInput = {
@@ -9666,7 +8141,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUpdateManyWithoutProductNestedInput
-    downloadVerification?: DownloadVerificationUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutDiscountsInput = {
@@ -9680,7 +8154,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutProductNestedInput
-    downloadVerification?: DownloadVerificationUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutDiscountsInput = {

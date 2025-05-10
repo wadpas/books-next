@@ -1,15 +1,10 @@
+import { Order, Product } from '@/generated/prisma'
 import { formatCurrency } from '@/lib/formatters'
 import { Button, Column, Img, Row, Section, Text } from '@react-email/components'
 
-type OrderInformationProps = {
-  order: { id: string; createdAt: Date; total: number }
-  product: { imagePath: string; name: string; description: string; filePath: string }
-  downloadVerificationId: string
-}
-
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' })
 
-export function OrderInformation({ order, product, downloadVerificationId }: OrderInformationProps) {
+export function OrderInformation({ order, product }: { order: Order; product: Product }) {
   return (
     <>
       <Section>
