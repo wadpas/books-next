@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Roboto, Lato } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import Header from '@/components/layout/Header'
 
 const roboto = Roboto({
   weight: '400',
@@ -26,12 +27,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang='en'
-      className='h-full'>
-      <body className={cn('relative h-full font-sans antialiased', roboto.className)}>
-        <main className='relative flex flex-col min-h-screen'>
-          <div className='flex-grow flex-1'>{children}</div>
+    <html lang='en'>
+      <body className={cn('font-sans antialiased', roboto.className)}>
+        <Header />
+        <main className='flex flex-col min-h-screen bg-primary-foreground'>
+          <div className='flex-1 w-full p-4 mx-auto bg-background min-w-[320px] max-w-[1600px]'>{children}</div>
         </main>
       </body>
     </html>
